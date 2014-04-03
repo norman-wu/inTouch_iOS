@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B240B3918EDC0B10083D5E2 /* inTouchLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B240B3818EDC0B10083D5E2 /* inTouchLogInViewController.m */; };
+		0B240B3C18EDC0FB0083D5E2 /* inTouchSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B240B3B18EDC0FB0083D5E2 /* inTouchSignUpViewController.m */; };
 		0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12818ECFD4D00372769 /* Foundation.framework */; };
 		0BAAB12B18ECFD4D00372769 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */; };
 		0BAAB12D18ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
@@ -19,8 +21,6 @@
 		0BAAB14418ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
 		0BAAB14C18ECFD4D00372769 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB14A18ECFD4D00372769 /* InfoPlist.strings */; };
 		0BAAB14E18ECFD4D00372769 /* inTouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB14D18ECFD4D00372769 /* inTouchTests.m */; };
-		0BAAB15A18ECFDD300372769 /* SignInUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB15818ECFDD300372769 /* SignInUpViewController.m */; };
-		0BAAB15B18ECFDD300372769 /* SignInUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */; };
 		0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB15E18ECFE8500372769 /* NearbyViewController.m */; };
 		0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */; };
 		0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB16418ECFEC400372769 /* ContactsViewController.m */; };
@@ -50,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B240B3718EDC0B10083D5E2 /* inTouchLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inTouchLogInViewController.h; sourceTree = "<group>"; };
+		0B240B3818EDC0B10083D5E2 /* inTouchLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inTouchLogInViewController.m; sourceTree = "<group>"; };
+		0B240B3A18EDC0FB0083D5E2 /* inTouchSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inTouchSignUpViewController.h; sourceTree = "<group>"; };
+		0B240B3B18EDC0FB0083D5E2 /* inTouchSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inTouchSignUpViewController.m; sourceTree = "<group>"; };
 		0BAAB12518ECFD4D00372769 /* inTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAAB12818ECFD4D00372769 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,9 +70,6 @@
 		0BAAB14918ECFD4D00372769 /* inTouchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inTouchTests-Info.plist"; sourceTree = "<group>"; };
 		0BAAB14B18ECFD4D00372769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0BAAB14D18ECFD4D00372769 /* inTouchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inTouchTests.m; sourceTree = "<group>"; };
-		0BAAB15718ECFDD300372769 /* SignInUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUpViewController.h; sourceTree = "<group>"; };
-		0BAAB15818ECFDD300372769 /* SignInUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUpViewController.m; sourceTree = "<group>"; };
-		0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInUpViewController.xib; sourceTree = "<group>"; };
 		0BAAB15D18ECFE8500372769 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = ../NearbyViewController.h; sourceTree = "<group>"; };
 		0BAAB15E18ECFE8500372769 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = ../NearbyViewController.m; sourceTree = "<group>"; };
 		0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearbyViewController.xib; path = ../NearbyViewController.xib; sourceTree = "<group>"; };
@@ -212,9 +213,10 @@
 		0BAAB15C18ECFE0A00372769 /* Sign In & Up */ = {
 			isa = PBXGroup;
 			children = (
-				0BAAB15718ECFDD300372769 /* SignInUpViewController.h */,
-				0BAAB15818ECFDD300372769 /* SignInUpViewController.m */,
-				0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */,
+				0B240B3718EDC0B10083D5E2 /* inTouchLogInViewController.h */,
+				0B240B3818EDC0B10083D5E2 /* inTouchLogInViewController.m */,
+				0B240B3A18EDC0FB0083D5E2 /* inTouchSignUpViewController.h */,
+				0B240B3B18EDC0FB0083D5E2 /* inTouchSignUpViewController.m */,
 			);
 			name = "Sign In & Up";
 			sourceTree = "<group>";
@@ -328,7 +330,6 @@
 				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
 				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
-				0BAAB15B18ECFDD300372769 /* SignInUpViewController.xib in Resources */,
 				0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,11 +349,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B240B3C18EDC0FB0083D5E2 /* inTouchSignUpViewController.m in Sources */,
 				0BAAB13918ECFD4D00372769 /* AppDelegate.m in Sources */,
 				0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */,
 				0BAAB16D18ECFF0900372769 /* SelfViewController.m in Sources */,
+				0B240B3918EDC0B10083D5E2 /* inTouchLogInViewController.m in Sources */,
 				0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */,
-				0BAAB15A18ECFDD300372769 /* SignInUpViewController.m in Sources */,
 				0BAAB13518ECFD4D00372769 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +560,7 @@
 				0BAAB15318ECFD4D00372769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0BAAB15418ECFD4D00372769 /* Build configuration list for PBXNativeTarget "inTouchTests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +569,7 @@
 				0BAAB15618ECFD4D00372769 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
