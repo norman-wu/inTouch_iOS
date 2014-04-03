@@ -8,6 +8,8 @@
 
 #import "NearbyViewController.h"
 
+#import <Parse/Parse.h>
+
 @interface NearbyViewController ()
 
 @end
@@ -19,6 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"NearBy";
     }
     return self;
 }
@@ -27,6 +30,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,16 +7,51 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+
+#import "NearbyViewController.h"
+#import "ContactsViewController.h"
+#import "SelfViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // add Parse
+    [Parse setApplicationId:@"gdx6O89iizP2Jg0ibFBfW9Df27o4lA9WCXuQDf2c"
+                  clientKey:@"djP9wbuJnul2UIcnwyQU5t69JN4CmleqYLZfWOG5"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    // initialize view controller with tabBar
+    [self initializeViewController];
+    
+    self.window.rootViewController = self.tabBarController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)initializeViewController
+{
+    // initialize nearby view
+    UIViewController *nearByController = [[NearbyViewController alloc] init];
+    UINavigationController *nearByNav = [[UINavigationController alloc] initWithRootViewController:nearByController];
+    
+    // initialize contacts view
+    UIViewController *contactsController = [[ContactsViewController alloc] init];
+    UINavigationController *contactsNav = [[UINavigationController alloc] initWithRootViewController:contactsController];
+    
+    // initialize self view
+    UIViewController *selfController = [[SelfViewController alloc] init];
+    UINavigationController *selfNav = [[UINavigationController alloc] initWithRootViewController:selfController];
+    
+    // set up tabBarController
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects: nearByNav, contactsNav, selfNav, nil];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
