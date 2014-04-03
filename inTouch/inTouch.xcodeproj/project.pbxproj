@@ -1,0 +1,525 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12818ECFD4D00372769 /* Foundation.framework */; };
+		0BAAB12B18ECFD4D00372769 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */; };
+		0BAAB12D18ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
+		0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB13118ECFD4D00372769 /* InfoPlist.strings */; };
+		0BAAB13518ECFD4D00372769 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB13418ECFD4D00372769 /* main.m */; };
+		0BAAB13918ECFD4D00372769 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB13818ECFD4D00372769 /* AppDelegate.m */; };
+		0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB13A18ECFD4D00372769 /* Images.xcassets */; };
+		0BAAB14218ECFD4D00372769 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB14118ECFD4D00372769 /* XCTest.framework */; };
+		0BAAB14318ECFD4D00372769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12818ECFD4D00372769 /* Foundation.framework */; };
+		0BAAB14418ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
+		0BAAB14C18ECFD4D00372769 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB14A18ECFD4D00372769 /* InfoPlist.strings */; };
+		0BAAB14E18ECFD4D00372769 /* inTouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB14D18ECFD4D00372769 /* inTouchTests.m */; };
+		0BAAB15A18ECFDD300372769 /* SignInUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB15818ECFDD300372769 /* SignInUpViewController.m */; };
+		0BAAB15B18ECFDD300372769 /* SignInUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */; };
+		0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB15E18ECFE8500372769 /* NearbyViewController.m */; };
+		0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */; };
+		0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB16418ECFEC400372769 /* ContactsViewController.m */; };
+		0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB16518ECFEC400372769 /* ContactsViewController.xib */; };
+		0BAAB16D18ECFF0900372769 /* SelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB16B18ECFF0900372769 /* SelfViewController.m */; };
+		0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB16C18ECFF0900372769 /* SelfViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0BAAB14518ECFD4D00372769 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BAAB11D18ECFD4D00372769 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BAAB12418ECFD4D00372769;
+			remoteInfo = inTouch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0BAAB12518ECFD4D00372769 /* inTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BAAB12818ECFD4D00372769 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0BAAB12C18ECFD4D00372769 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0BAAB13018ECFD4D00372769 /* inTouch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inTouch-Info.plist"; sourceTree = "<group>"; };
+		0BAAB13218ECFD4D00372769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0BAAB13418ECFD4D00372769 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0BAAB13618ECFD4D00372769 /* inTouch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "inTouch-Prefix.pch"; sourceTree = "<group>"; };
+		0BAAB13718ECFD4D00372769 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0BAAB13818ECFD4D00372769 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0BAAB13A18ECFD4D00372769 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0BAAB14018ECFD4D00372769 /* inTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = inTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0BAAB14118ECFD4D00372769 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0BAAB14918ECFD4D00372769 /* inTouchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inTouchTests-Info.plist"; sourceTree = "<group>"; };
+		0BAAB14B18ECFD4D00372769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0BAAB14D18ECFD4D00372769 /* inTouchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inTouchTests.m; sourceTree = "<group>"; };
+		0BAAB15718ECFDD300372769 /* SignInUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUpViewController.h; sourceTree = "<group>"; };
+		0BAAB15818ECFDD300372769 /* SignInUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInUpViewController.m; sourceTree = "<group>"; };
+		0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInUpViewController.xib; sourceTree = "<group>"; };
+		0BAAB15D18ECFE8500372769 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = ../NearbyViewController.h; sourceTree = "<group>"; };
+		0BAAB15E18ECFE8500372769 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = ../NearbyViewController.m; sourceTree = "<group>"; };
+		0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearbyViewController.xib; path = ../NearbyViewController.xib; sourceTree = "<group>"; };
+		0BAAB16318ECFEC400372769 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		0BAAB16418ECFEC400372769 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
+		0BAAB16518ECFEC400372769 /* ContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		0BAAB16A18ECFF0900372769 /* SelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfViewController.h; sourceTree = "<group>"; };
+		0BAAB16B18ECFF0900372769 /* SelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfViewController.m; sourceTree = "<group>"; };
+		0BAAB16C18ECFF0900372769 /* SelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelfViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0BAAB12218ECFD4D00372769 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB12B18ECFD4D00372769 /* CoreGraphics.framework in Frameworks */,
+				0BAAB12D18ECFD4D00372769 /* UIKit.framework in Frameworks */,
+				0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAAB13D18ECFD4D00372769 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB14218ECFD4D00372769 /* XCTest.framework in Frameworks */,
+				0BAAB14418ECFD4D00372769 /* UIKit.framework in Frameworks */,
+				0BAAB14318ECFD4D00372769 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0BAAB11C18ECFD4D00372769 = {
+			isa = PBXGroup;
+			children = (
+				0BAAB12E18ECFD4D00372769 /* inTouch */,
+				0BAAB12F18ECFD4D00372769 /* Supporting Files */,
+				0BAAB14718ECFD4D00372769 /* inTouchTests */,
+				0BAAB12718ECFD4D00372769 /* Frameworks */,
+				0BAAB12618ECFD4D00372769 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0BAAB12618ECFD4D00372769 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB12518ECFD4D00372769 /* inTouch.app */,
+				0BAAB14018ECFD4D00372769 /* inTouchTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0BAAB12718ECFD4D00372769 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB12818ECFD4D00372769 /* Foundation.framework */,
+				0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */,
+				0BAAB12C18ECFD4D00372769 /* UIKit.framework */,
+				0BAAB14118ECFD4D00372769 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0BAAB12E18ECFD4D00372769 /* inTouch */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB13718ECFD4D00372769 /* AppDelegate.h */,
+				0BAAB13818ECFD4D00372769 /* AppDelegate.m */,
+				0BAAB15C18ECFE0A00372769 /* Sign In & Up */,
+				0BAAB16218ECFE9100372769 /* Nearby */,
+				0BAAB16818ECFECA00372769 /* Contacts */,
+				0BAAB16918ECFED800372769 /* Self */,
+				0BAAB13A18ECFD4D00372769 /* Images.xcassets */,
+			);
+			path = inTouch;
+			sourceTree = "<group>";
+		};
+		0BAAB12F18ECFD4D00372769 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB13018ECFD4D00372769 /* inTouch-Info.plist */,
+				0BAAB13118ECFD4D00372769 /* InfoPlist.strings */,
+				0BAAB13418ECFD4D00372769 /* main.m */,
+				0BAAB13618ECFD4D00372769 /* inTouch-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = inTouch;
+			sourceTree = "<group>";
+		};
+		0BAAB14718ECFD4D00372769 /* inTouchTests */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB14D18ECFD4D00372769 /* inTouchTests.m */,
+				0BAAB14818ECFD4D00372769 /* Supporting Files */,
+			);
+			path = inTouchTests;
+			sourceTree = "<group>";
+		};
+		0BAAB14818ECFD4D00372769 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB14918ECFD4D00372769 /* inTouchTests-Info.plist */,
+				0BAAB14A18ECFD4D00372769 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0BAAB15C18ECFE0A00372769 /* Sign In & Up */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB15718ECFDD300372769 /* SignInUpViewController.h */,
+				0BAAB15818ECFDD300372769 /* SignInUpViewController.m */,
+				0BAAB15918ECFDD300372769 /* SignInUpViewController.xib */,
+			);
+			name = "Sign In & Up";
+			sourceTree = "<group>";
+		};
+		0BAAB16218ECFE9100372769 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB15D18ECFE8500372769 /* NearbyViewController.h */,
+				0BAAB15E18ECFE8500372769 /* NearbyViewController.m */,
+				0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */,
+			);
+			name = Nearby;
+			sourceTree = "<group>";
+		};
+		0BAAB16818ECFECA00372769 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB16318ECFEC400372769 /* ContactsViewController.h */,
+				0BAAB16418ECFEC400372769 /* ContactsViewController.m */,
+				0BAAB16518ECFEC400372769 /* ContactsViewController.xib */,
+			);
+			name = Contacts;
+			sourceTree = "<group>";
+		};
+		0BAAB16918ECFED800372769 /* Self */ = {
+			isa = PBXGroup;
+			children = (
+				0BAAB16A18ECFF0900372769 /* SelfViewController.h */,
+				0BAAB16B18ECFF0900372769 /* SelfViewController.m */,
+				0BAAB16C18ECFF0900372769 /* SelfViewController.xib */,
+			);
+			name = Self;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0BAAB12418ECFD4D00372769 /* inTouch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BAAB15118ECFD4D00372769 /* Build configuration list for PBXNativeTarget "inTouch" */;
+			buildPhases = (
+				0BAAB12118ECFD4D00372769 /* Sources */,
+				0BAAB12218ECFD4D00372769 /* Frameworks */,
+				0BAAB12318ECFD4D00372769 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = inTouch;
+			productName = inTouch;
+			productReference = 0BAAB12518ECFD4D00372769 /* inTouch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0BAAB13F18ECFD4D00372769 /* inTouchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0BAAB15418ECFD4D00372769 /* Build configuration list for PBXNativeTarget "inTouchTests" */;
+			buildPhases = (
+				0BAAB13C18ECFD4D00372769 /* Sources */,
+				0BAAB13D18ECFD4D00372769 /* Frameworks */,
+				0BAAB13E18ECFD4D00372769 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0BAAB14618ECFD4D00372769 /* PBXTargetDependency */,
+			);
+			name = inTouchTests;
+			productName = inTouchTests;
+			productReference = 0BAAB14018ECFD4D00372769 /* inTouchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0BAAB11D18ECFD4D00372769 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = yigu;
+				TargetAttributes = {
+					0BAAB13F18ECFD4D00372769 = {
+						TestTargetID = 0BAAB12418ECFD4D00372769;
+					};
+				};
+			};
+			buildConfigurationList = 0BAAB12018ECFD4D00372769 /* Build configuration list for PBXProject "inTouch" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0BAAB11C18ECFD4D00372769;
+			productRefGroup = 0BAAB12618ECFD4D00372769 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0BAAB12418ECFD4D00372769 /* inTouch */,
+				0BAAB13F18ECFD4D00372769 /* inTouchTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0BAAB12318ECFD4D00372769 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */,
+				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
+				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
+				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
+				0BAAB15B18ECFDD300372769 /* SignInUpViewController.xib in Resources */,
+				0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAAB13E18ECFD4D00372769 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB14C18ECFD4D00372769 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0BAAB12118ECFD4D00372769 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB13918ECFD4D00372769 /* AppDelegate.m in Sources */,
+				0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */,
+				0BAAB16D18ECFF0900372769 /* SelfViewController.m in Sources */,
+				0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */,
+				0BAAB15A18ECFDD300372769 /* SignInUpViewController.m in Sources */,
+				0BAAB13518ECFD4D00372769 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0BAAB13C18ECFD4D00372769 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0BAAB14E18ECFD4D00372769 /* inTouchTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0BAAB14618ECFD4D00372769 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BAAB12418ECFD4D00372769 /* inTouch */;
+			targetProxy = 0BAAB14518ECFD4D00372769 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0BAAB13118ECFD4D00372769 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BAAB13218ECFD4D00372769 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0BAAB14A18ECFD4D00372769 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BAAB14B18ECFD4D00372769 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0BAAB14F18ECFD4D00372769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0BAAB15018ECFD4D00372769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0BAAB15218ECFD4D00372769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "inTouch/inTouch-Prefix.pch";
+				INFOPLIST_FILE = "inTouch/inTouch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0BAAB15318ECFD4D00372769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "inTouch/inTouch-Prefix.pch";
+				INFOPLIST_FILE = "inTouch/inTouch-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0BAAB15518ECFD4D00372769 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/inTouch.app/inTouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "inTouch/inTouch-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "inTouchTests/inTouchTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		0BAAB15618ECFD4D00372769 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/inTouch.app/inTouch";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "inTouch/inTouch-Prefix.pch";
+				INFOPLIST_FILE = "inTouchTests/inTouchTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0BAAB12018ECFD4D00372769 /* Build configuration list for PBXProject "inTouch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BAAB14F18ECFD4D00372769 /* Debug */,
+				0BAAB15018ECFD4D00372769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0BAAB15118ECFD4D00372769 /* Build configuration list for PBXNativeTarget "inTouch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BAAB15218ECFD4D00372769 /* Debug */,
+				0BAAB15318ECFD4D00372769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0BAAB15418ECFD4D00372769 /* Build configuration list for PBXNativeTarget "inTouchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BAAB15518ECFD4D00372769 /* Debug */,
+				0BAAB15618ECFD4D00372769 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0BAAB11D18ECFD4D00372769 /* Project object */;
+}
