@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0B240B3918EDC0B10083D5E2 /* inTouchLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B240B3818EDC0B10083D5E2 /* inTouchLogInViewController.m */; };
 		0B240B3C18EDC0FB0083D5E2 /* inTouchSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B240B3B18EDC0FB0083D5E2 /* inTouchSignUpViewController.m */; };
-		0B240B4318EE074A0083D5E2 /* SignInUp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B240B4218EE074A0083D5E2 /* SignInUp.jpg */; };
 		0B240B4518EE0A650083D5E2 /* App_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B240B4418EE0A650083D5E2 /* App_Logo.png */; };
 		0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12818ECFD4D00372769 /* Foundation.framework */; };
 		0BAAB12B18ECFD4D00372769 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */; };
@@ -39,6 +38,8 @@
 		0BAAB17E18ED041A00372769 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB17D18ED041A00372769 /* Security.framework */; };
 		0BAAB18018ED042500372769 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB17F18ED042500372769 /* StoreKit.framework */; };
 		0BAAB18218ED042F00372769 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB18118ED042F00372769 /* SystemConfiguration.framework */; };
+		0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD268118EE410B00E1610C /* SignInUp.JPG */; };
+		0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD268318EE41C500E1610C /* SignInUp2.JPG */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,6 @@
 		0B240B3818EDC0B10083D5E2 /* inTouchLogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inTouchLogInViewController.m; sourceTree = "<group>"; };
 		0B240B3A18EDC0FB0083D5E2 /* inTouchSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inTouchSignUpViewController.h; sourceTree = "<group>"; };
 		0B240B3B18EDC0FB0083D5E2 /* inTouchSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inTouchSignUpViewController.m; sourceTree = "<group>"; };
-		0B240B4218EE074A0083D5E2 /* SignInUp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SignInUp.jpg; sourceTree = "<group>"; };
 		0B240B4418EE0A650083D5E2 /* App_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = App_Logo.png; sourceTree = "<group>"; };
 		0BAAB12518ECFD4D00372769 /* inTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAAB12818ECFD4D00372769 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +93,8 @@
 		0BAAB17D18ED041A00372769 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0BAAB17F18ED042500372769 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0BAAB18118ED042F00372769 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BAD268118EE410B00E1610C /* SignInUp.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SignInUp.JPG; sourceTree = "<group>"; };
+		0BAD268318EE41C500E1610C /* SignInUp2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SignInUp2.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +134,8 @@
 		0B240B3D18EE05AE0083D5E2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				0B240B4218EE074A0083D5E2 /* SignInUp.jpg */,
+				0BAD268318EE41C500E1610C /* SignInUp2.JPG */,
+				0BAD268118EE410B00E1610C /* SignInUp.JPG */,
 				0B240B4418EE0A650083D5E2 /* App_Logo.png */,
 			);
 			name = Images;
@@ -340,9 +343,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */,
 				0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */,
 				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
-				0B240B4318EE074A0083D5E2 /* SignInUp.jpg in Resources */,
+				0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */,
 				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
 				0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */,

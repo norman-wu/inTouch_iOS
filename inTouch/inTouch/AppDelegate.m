@@ -42,11 +42,9 @@
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     _locationManager.distanceFilter = 10.0f;
     
-    
     //start positioning
     [_locationManager startUpdatingLocation];
 
-    
     // initialize nearby view
     UIViewController *nearByController = [[NearbyViewController alloc] init];
     UINavigationController *nearByNav = [[UINavigationController alloc] initWithRootViewController:nearByController];
@@ -73,9 +71,8 @@
     
     CLLocation * currLocation = [locations lastObject];
     
-    
-    NSLog([NSString stringWithFormat:@"%3.20f", currLocation.coordinate.latitude]);
-    NSLog([NSString stringWithFormat:@"%3.20f", currLocation.coordinate.longitude]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.latitude]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.longitude]);
 }
 
 

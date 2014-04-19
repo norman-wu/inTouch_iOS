@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "inTouchLogInViewController.h"
+#import "inTouchSignUpViewController.h"
 
-@interface SelfViewController : UIViewController
+@interface SelfViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UILabel *profileName;
+@property (strong, nonatomic) IBOutlet UILabel *profileEmail;
+@property (strong, nonatomic) IBOutlet UILabel *profileEducation;
 
 @end
