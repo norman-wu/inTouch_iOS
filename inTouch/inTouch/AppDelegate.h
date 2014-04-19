@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+//For GPS
+#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocationManagerDelegate.h>
+
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+
 
 @property (strong, nonatomic) UIWindow *window;
+
+//GPS location manager
+@property(nonatomic, strong) CLLocationManager *locationManager;
+
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 

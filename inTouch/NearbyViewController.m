@@ -6,9 +6,12 @@
 //  Copyright (c) 2014 yigu. All rights reserved.
 //
 
+
+#import "AppDelegate.h"
 #import "NearbyViewController.h"
 #import "inTouchLogInViewController.h"
 #import "inTouchSignUpViewController.h"
+
 
 #import <Parse/Parse.h>
 
@@ -33,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+
 
 // check if user has logged in
 - (void)viewDidAppear:(BOOL)animated

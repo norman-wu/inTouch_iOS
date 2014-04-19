@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
+
 
 @interface NearbyViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+
 
 @end
