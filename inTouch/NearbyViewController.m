@@ -16,6 +16,7 @@
 #import <Parse/Parse.h>
 
 @interface NearbyViewController ()
+@property (weak, nonatomic) IBOutlet UITableView *NearbyTableView;
 
 @end
 
@@ -28,12 +29,19 @@
         // Custom initialization
         self.title = @"NearBy";
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.NearbyTableView registerNib:[UINib nibWithNibName:@"NearbyCellView" bundle:nil] forCellReuseIdentifier:@"NearbyCellView"];
+    
+    self.NearbyTableView.delegate = self;
+    self.NearbyTableView.dataSource = self;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -117,6 +125,23 @@
     }
     
     return informationComplete;
+}
+//--------------cell function -------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"hello, this is qiangqiang");
+    
 }
 
 - (void)didReceiveMemoryWarning
