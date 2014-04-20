@@ -42,6 +42,12 @@
 		0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD268318EE41C500E1610C /* SignInUp2.JPG */; };
 		0BB5B6CF190317C200E0D15B /* SelfDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */; };
 		0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */; };
+		0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3E8190368B00015D423 /* NearbyCellView.xib */; };
+		0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DA3ED19036DB80015D423 /* NearbyCellView.m */; };
+		0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3EF190373BF0015D423 /* axj.jpg */; };
+		0C5DA3F2190378C00015D423 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3F1190378C00015D423 /* add.png */; };
+		0C5DA3F419037BF90015D423 /* ContactsCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3F319037BF90015D423 /* ContactsCellView.xib */; };
+		0C5DA3F719037C720015D423 /* ContactsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DA3F619037C720015D423 /* ContactsCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +106,14 @@
 		0BB5B6CC190317C200E0D15B /* SelfDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfDetailViewController.h; sourceTree = "<group>"; };
 		0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfDetailViewController.m; sourceTree = "<group>"; };
 		0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelfDetailViewController.xib; sourceTree = "<group>"; };
+		0C5DA3E8190368B00015D423 /* NearbyCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyCellView.xib; sourceTree = "<group>"; };
+		0C5DA3EC19036DB80015D423 /* NearbyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyCellView.h; sourceTree = "<group>"; };
+		0C5DA3ED19036DB80015D423 /* NearbyCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyCellView.m; sourceTree = "<group>"; };
+		0C5DA3EF190373BF0015D423 /* axj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = axj.jpg; sourceTree = "<group>"; };
+		0C5DA3F1190378C00015D423 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		0C5DA3F319037BF90015D423 /* ContactsCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsCellView.xib; sourceTree = "<group>"; };
+		0C5DA3F519037C720015D423 /* ContactsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsCellView.h; sourceTree = "<group>"; };
+		0C5DA3F619037C720015D423 /* ContactsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +153,8 @@
 		0B240B3D18EE05AE0083D5E2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0C5DA3F1190378C00015D423 /* add.png */,
+				0C5DA3EF190373BF0015D423 /* axj.jpg */,
 				0BAD268318EE41C500E1610C /* SignInUp2.JPG */,
 				0BAD268118EE410B00E1610C /* SignInUp.JPG */,
 				0B240B4418EE0A650083D5E2 /* App_Logo.png */,
@@ -249,6 +265,9 @@
 				0BAAB15D18ECFE8500372769 /* NearbyViewController.h */,
 				0BAAB15E18ECFE8500372769 /* NearbyViewController.m */,
 				0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */,
+				0C5DA3E8190368B00015D423 /* NearbyCellView.xib */,
+				0C5DA3EC19036DB80015D423 /* NearbyCellView.h */,
+				0C5DA3ED19036DB80015D423 /* NearbyCellView.m */,
 			);
 			name = Nearby;
 			sourceTree = "<group>";
@@ -259,6 +278,9 @@
 				0BAAB16318ECFEC400372769 /* ContactsViewController.h */,
 				0BAAB16418ECFEC400372769 /* ContactsViewController.m */,
 				0BAAB16518ECFEC400372769 /* ContactsViewController.xib */,
+				0C5DA3F319037BF90015D423 /* ContactsCellView.xib */,
+				0C5DA3F519037C720015D423 /* ContactsCellView.h */,
+				0C5DA3F619037C720015D423 /* ContactsCellView.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -352,12 +374,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */,
+				0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */,
 				0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */,
 				0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */,
 				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
 				0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */,
 				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
+				0C5DA3F419037BF90015D423 /* ContactsCellView.xib in Resources */,
+				0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */,
+				0C5DA3F2190378C00015D423 /* add.png in Resources */,
 				0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */,
 				0B240B4518EE0A650083D5E2 /* App_Logo.png in Resources */,
 			);
@@ -379,6 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B240B3C18EDC0FB0083D5E2 /* inTouchSignUpViewController.m in Sources */,
+				0C5DA3F719037C720015D423 /* ContactsCellView.m in Sources */,
+				0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */,
 				0BB5B6CF190317C200E0D15B /* SelfDetailViewController.m in Sources */,
 				0BAAB13918ECFD4D00372769 /* AppDelegate.m in Sources */,
 				0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */,

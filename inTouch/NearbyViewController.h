@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 
 
-@interface NearbyViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface NearbyViewController : UIViewController <PFLogInViewControllerDelegate,
 
+    PFSignUpViewControllerDelegate, UITableViewDataSource,UITableViewDelegate>
 
 @end
