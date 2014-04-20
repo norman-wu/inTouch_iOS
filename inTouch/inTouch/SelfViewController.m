@@ -88,14 +88,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self retrieveProfileInfo];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self retrieveProfileInfo];
+}
+
+
 - (void)retrieveProfileInfo
 {
-    self.profileName.text = [[PFUser currentUser] username];
-    self.profileEmail.text = [[PFUser currentUser] email];
+    PFUser *user = [PFUser currentUser];
+    
+    self.profileName.text = user.username;
+    self.profileEmail.text = user.email;
+    self.profileEducation.text = user[@"education"];
+    
+    [self downloadProfileImage];
+}
+
+- (void)downloadProfileImage
+{
+    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    
+    [storyQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    
+    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error && [objects count] != 0) {
+            PFObject *story = [objects objectAtIndex:[objects count] - 1];           // Store results
+            PFFile *profileImage = story[@"media"];
+            NSData *imageData = [profileImage getData];
+            self.profileImage.image = [UIImage imageWithData:imageData];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning

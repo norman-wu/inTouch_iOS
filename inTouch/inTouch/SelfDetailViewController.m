@@ -35,23 +35,106 @@
 }
 
 // tap the top right button of the navigation to submit the change
--(void)submitProfileChange
+- (void)submitProfileChange
 {
+    PFUser *user = [PFUser currentUser];
     
+    if(![self stringIsNilOrEmpty:self.nameSet.text])
+    {
+        user.username = self.nameSet.text;
+    }
+    
+    if(![self stringIsNilOrEmpty:self.emailSet.text])
+    {
+        user.email = self.emailSet.text;
+    }
+    
+    if(![self stringIsNilOrEmpty:self.educationSet.text])
+    {
+        user[@"education"] = self.educationSet.text;
+    }
+    
+    if(!CGSizeEqualToSize(self.profileImage.image.size, CGSizeZero)){
+        NSData *imageData = UIImageJPEGRepresentation(self.profileImage.image, 0.05f);
+        [self uploadPhoto:imageData];
+    }
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)uploadPhoto:(NSData *)imageData
+{
+    PFUser *user = [PFUser currentUser];
+    
+    PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
+    
+    // Save PFFile
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Create a PFObject around a PFFile and associate it with the current user
+            PFObject *userPhoto = [PFObject objectWithClassName:@"Story"];
+            [userPhoto setObject:imageFile forKey:@"media"];
+            
+            // Set the access control list to current user for security purposes
+            userPhoto.ACL = [PFACL ACLWithUser:user];
+            
+            [userPhoto setObject:user forKey:@"author"];
+            
+            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    
+                }
+                else{
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        }
+        else{
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+-(BOOL)stringIsNilOrEmpty:(NSString*)aString
+{
+    return !(aString && aString.length);
 }
 
 - (void)setUpViewComponents
 {
+    PFUser *user = [PFUser currentUser];
+    
     // set up place holders by retrieving info from parse
-    self.nameSet.placeholder = [[PFUser currentUser] username];
-    self.emailSet.placeholder = [[PFUser currentUser] email];
-    self.educationSet.placeholder = @"Carnegie Mellon University";
+    self.nameSet.placeholder = user.username;
+    self.emailSet.placeholder = user.email;
+    self.educationSet.placeholder = user[@"education"];
     
     // set up image
-    
+    [self loadProfileImage];
     
     // set up uploadImage button
     [self setUpButton];
+}
+
+- (void)loadProfileImage
+{
+    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    
+    [storyQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    
+    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error && [objects count] != 0) {
+            PFObject *story = [objects objectAtIndex:[objects count] - 1];           // Store results
+            PFFile *profileImage = story[@"media"];
+            NSData *imageData = [profileImage getData];
+            self.profileImage.image = [UIImage imageWithData:imageData];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
 }
 
 - (void)setUpButton
