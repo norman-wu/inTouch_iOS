@@ -7,6 +7,7 @@
 //
 
 #import "SelfViewController.h"
+#import "SelfDetailViewController.h"
 
 @interface SelfViewController ()
 
@@ -33,7 +34,7 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStyleBordered target:self action:@selector(signOutApp)];
     
-    self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editProfile)];
 }
 
 - (void)signOutApp
@@ -51,8 +52,13 @@
     
     // Present log in view controller
     [self presentViewController:logInCtr animated:YES completion:nil];
+}
 
-    
+- (void)editProfile
+{
+    // go to detail view
+    SelfDetailViewController *detail = [[SelfDetailViewController alloc] init];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 - (inTouchLogInViewController *) setUpLogIn
