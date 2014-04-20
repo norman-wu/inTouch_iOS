@@ -1,5 +1,5 @@
 //
-//  NearbyCellView.h
+//  ContactsCellView.h
 //  inTouch
 //
 //  Created by Luo Wu on 4/19/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NearbyCellView : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIImageView *AddFriendButton;
+@interface ContactsCellView : UITableViewCell
 
 @end

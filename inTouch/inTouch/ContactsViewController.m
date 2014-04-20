@@ -28,7 +28,32 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.ContractsTableView registerNib:[UINib nibWithNibName:@"ContactsCellView" bundle:nil] forCellReuseIdentifier:@"ContactsCellView"];
+    
+    self.ContractsTableView.delegate = self;
+    self.ContractsTableView.dataSource = self;
+
+    
 }
+
+//--------------------table view------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactsCellView"];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"hello, this is contract");
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -23,11 +23,19 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="add.png" translatesAutoresizingMaskIntoConstraints="NO" id="7R5-IM-KLd">
+                        <rect key="frame" x="264" y="6" width="31" height="31"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="AddFriendButton" destination="7R5-IM-KLd" id="dLS-6z-IG4"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="add.png" width="64" height="64"/>
         <image name="axj.jpg" width="225" height="225"/>
     </resources>
 </document>
