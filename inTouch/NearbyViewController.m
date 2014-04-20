@@ -144,10 +144,10 @@
     
 }
 
-- (void)didReceiveMemoryWarning
+// if user logged in, dissmiss the login View
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

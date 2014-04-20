@@ -84,22 +84,43 @@
     return signUpCtr;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(![PFUser currentUser]){
+        // Instantiate our custom log in view controller
+        inTouchLogInViewController *logInCtr = [self setUpLogIn];
+        
+        // Instantiate our custom sign up view controller
+        inTouchSignUpViewController *signUpCtr = [self setUpSignUp];
+        
+        // Link the sign up view controller
+        [logInCtr setSignUpController:signUpCtr];
+        
+        // Present log in view controller
+        [self presentViewController:logInCtr animated:YES completion:nil];
+    }
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self retrieveProfileInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self retrieveProfileInfo];
+    if([PFUser currentUser]){
+        [self retrieveProfileInfo];
+    }
 }
 
 
 - (void)retrieveProfileInfo
 {
     PFUser *user = [PFUser currentUser];
+    
+    // to update info
+    [user refresh];
     
     self.profileName.text = user.username;
     self.profileEmail.text = user.email;
@@ -112,7 +133,7 @@
 {
     PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
     
-    [storyQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    [storyQuery whereKey:@"Author" equalTo:[PFUser currentUser]];
     
     [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error && [objects count] != 0) {
@@ -128,10 +149,10 @@
 
 }
 
-- (void)didReceiveMemoryWarning
+// if user logged in, dissmiss the login View
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

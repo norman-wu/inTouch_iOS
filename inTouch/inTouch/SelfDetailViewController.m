@@ -78,7 +78,7 @@
             // Set the access control list to current user for security purposes
             userPhoto.ACL = [PFACL ACLWithUser:user];
             
-            [userPhoto setObject:user forKey:@"author"];
+            [userPhoto setObject:user forKey:@"Author"];
             
             [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
@@ -106,6 +106,8 @@
 {
     PFUser *user = [PFUser currentUser];
     
+    [user refresh];
+    
     // set up place holders by retrieving info from parse
     self.nameSet.placeholder = user.username;
     self.emailSet.placeholder = user.email;
@@ -122,7 +124,7 @@
 {
     PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
     
-    [storyQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    [storyQuery whereKey:@"Author" equalTo:[PFUser currentUser]];
     
     [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error && [objects count] != 0) {
@@ -149,6 +151,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     [self setUpViewComponents];
     
     // tap other place to dimiss keyboard
@@ -163,11 +166,6 @@
     [self.view endEditing:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)uploadImage:(UIButton *)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Remove Image" otherButtonTitles:@"Take Photo", @"Choose existing photo", nil];
@@ -182,6 +180,7 @@
     switch(buttonIndex)
     {
         case 0:
+            [self deletePhoto];
             break;
         case 1:
             [self takePhoto];
@@ -190,6 +189,30 @@
             [self chooseExistingPhoto];
             break;
     }
+}
+
+-(void)deletePhoto
+{
+    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    
+    [storyQuery whereKey:@"Author" equalTo:[PFUser currentUser]];
+    
+    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error && [objects count] != 0) {
+            PFObject *story = [objects objectAtIndex:[objects count] - 1];
+            
+            [story deleteInBackground];
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Current Image Deleted"
+                                  message: @"Personal Profile Image has been deleted"\
+                                  delegate: nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+
+        }
+    }];
 }
 
 - (void)takePhoto
