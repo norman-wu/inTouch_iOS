@@ -7,6 +7,7 @@
 //
 
 #import "ContactsViewController.h"
+#import <Parse/Parse.h>
 
 @interface ContactsViewController ()
 
@@ -39,6 +40,7 @@
 //--------------------table view------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    PFQuery *testQuery = [PFQuery queryWithClassName:@"User"];
     return 6;
 }
 
@@ -50,7 +52,39 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"hello, this is contract");
+    
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+    
+    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
+    
+    NSLog(@"hello, this is contact");
+    
+    
+    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            //show friends if any
+            if([objects count]){
+                for(PFObject *friendRecord in objects){//interate thru Friend table
+                    
+                    PFObject *friend = friendRecord[@"Friend_id"]; //get the User obj
+                    
+                    //query the user table for more info
+                    PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
+                    PFObject *userRecord = [userQuery getObjectWithId:friend.objectId];
+                    NSLog(@"%@, %@", userRecord[@"username"],userRecord[@"email"]);
+                    
+                    //TODO doubt: why can't use friend[@“username”]?
+       
+                }
+            }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+    
+    NSLog(@"-------------------");
+    
     
 }
 
