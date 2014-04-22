@@ -38,6 +38,11 @@
 }
 
 //--------------------table view------------------
+//All querry in this method is now blocking.
+//(the logic is sequential, don't know how to use asynchronous method)
+
+//TODO suppress run time warnings
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
@@ -48,9 +53,6 @@
 
     NSInteger numberOfRowsReturned = [friendQuery countObjects];
     return numberOfRowsReturned ? numberOfRowsReturned : 1;  //1 row if no friend
-    
-    //TODO suppress warning. Can't think of a way to use asynchronous method
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
