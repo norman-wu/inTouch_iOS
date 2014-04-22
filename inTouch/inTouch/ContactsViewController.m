@@ -40,50 +40,102 @@
 //--------------------table view------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    PFQuery *testQuery = [PFQuery queryWithClassName:@"User"];
-    return 6;
+    
+    //creat a querry and count results
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+    
+    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
+
+    NSInteger numberOfRowsReturned = [friendQuery countObjects];
+    return numberOfRowsReturned ? numberOfRowsReturned : 1;  //1 row if no friend
+    
+    //TODO suppress warning. Can't think of a way to use asynchronous method
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //get the cell from the nib
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactsCellView"];
+    
+    //instantiate new cell if nil
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ContactsCellView"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    
+    //query database
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
+    NSArray *friendQueryRecords = [friendQuery findObjects];
+    
+    
+    //show friends if any
+    if ([friendQueryRecords count]) {
+        
+        NSInteger rowNumber = indexPath.row;
+        
+        
+        //first get the friend table record, then get the friend
+        PFObject *friend = friendQueryRecords[rowNumber][@"Friend_id"]; //get a user obj
+        
+        
+        //query the user table for more info
+        PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
+        PFObject *userRecord = [userQuery getObjectWithId:friend.objectId]; //get the user obj
+        
+        
+        //fill the cell
+        cell.textLabel.text = userRecord[@"username"];
+        cell.detailTextLabel.text = userRecord[@"email"];
+        
+        
+    } else{
+        //no friend view
+        cell.textLabel.text = @"Poor you! You have no friends yet. ";
+        cell.detailTextLabel.text = @" It's ok. Keep inTouch and I could be your friend.";
+       
+    }
+    
+    
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+//    //query database non blocking sample code for future reference @Weishi
+//    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+//    
+//    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
+//
+//    
+//    
+//    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            //show friends if any
+//            if([objects count]){
+//                for(PFObject *friendRecord in objects){//interate thru Friend table
+//                    
+//                    PFObject *friend = friendRecord[@"Friend_id"]; //get the User obj
+//                    
+//                    //query the user table for more info
+//                    PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
+//                    PFObject *userRecord = [userQuery getObjectWithId:friend.objectId];
+//                    NSLog(@"%@, %@", userRecord[@"username"],userRecord[@"email"]);
+//                    
+//                    //TODO doubt: why can't use friend[@“username”]?
+//       
+//                }
+//            }
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//        }
+//    }];
     
-    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
-    
-    NSLog(@"hello, this is contact");
-    
-    
-    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            //show friends if any
-            if([objects count]){
-                for(PFObject *friendRecord in objects){//interate thru Friend table
-                    
-                    PFObject *friend = friendRecord[@"Friend_id"]; //get the User obj
-                    
-                    //query the user table for more info
-                    PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
-                    PFObject *userRecord = [userQuery getObjectWithId:friend.objectId];
-                    NSLog(@"%@, %@", userRecord[@"username"],userRecord[@"email"]);
-                    
-                    //TODO doubt: why can't use friend[@“username”]?
-       
-                }
-            }
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }];
-    
-    NSLog(@"-------------------");
+    NSLog(@"Hello, this is contact");
     
     
 }
