@@ -12,15 +12,20 @@
 //For GPS
 #import <CoreLocation/CoreLocation.h>
 #import <CoreLocation/CLLocationManagerDelegate.h>
+#import "NearbyViewController.h"
+#import "ContactsViewController.h"
+#import "SelfViewController.h"
 
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 
 @property (strong, nonatomic) UIWindow *window;
 
 //GPS location manager
-@property(nonatomic, strong) CLLocationManager *locationManager;
+
+@property (strong, nonatomic) NearbyViewController *nearByController;
+@property (strong, nonatomic) ContactsViewController *contactsController;
+@property (strong, nonatomic) SelfViewController *selfController;
 
 
 @property (strong, nonatomic) UITabBarController *tabBarController;

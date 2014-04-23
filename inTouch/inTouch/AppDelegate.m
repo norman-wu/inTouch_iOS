@@ -9,9 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
-#import "NearbyViewController.h"
-#import "ContactsViewController.h"
-#import "SelfViewController.h"
+
 
 @implementation AppDelegate
 
@@ -36,26 +34,18 @@
 
 - (void)initializeViewController
 {
-    //init LocationManager
-    _locationManager = [[CLLocationManager alloc] init];
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    _locationManager.distanceFilter = 10.0f;
-    
-    //start positioning
-    [_locationManager startUpdatingLocation];
-
+   
     // initialize nearby view
-    UIViewController *nearByController = [[NearbyViewController alloc] init];
-    UINavigationController *nearByNav = [[UINavigationController alloc] initWithRootViewController:nearByController];
+    self.nearByController = [[NearbyViewController alloc] init];
+    UINavigationController *nearByNav = [[UINavigationController alloc] initWithRootViewController:self.nearByController];
     
     // initialize contacts view
-    UIViewController *contactsController = [[ContactsViewController alloc] init];
-    UINavigationController *contactsNav = [[UINavigationController alloc] initWithRootViewController:contactsController];
+    self.contactsController = [[ContactsViewController alloc] init];
+    UINavigationController *contactsNav = [[UINavigationController alloc] initWithRootViewController:self.contactsController];
     
     // initialize self view
-    UIViewController *selfController = [[SelfViewController alloc] init];
-    UINavigationController *selfNav = [[UINavigationController alloc] initWithRootViewController:selfController];
+    self.selfController = [[SelfViewController alloc] init];
+    UINavigationController *selfNav = [[UINavigationController alloc] initWithRootViewController:self.selfController];
     
     // set up tabBarController
     self.tabBarController = [[UITabBarController alloc] init];
@@ -65,15 +55,6 @@
 
 #pragma mark Core Location UPDATE LOCATION
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-
-{
-    
-    CLLocation * currLocation = [locations lastObject];
-    
-    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.latitude]);
-    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.longitude]);
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -87,11 +68,8 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    
     //stop positioning
-    [_locationManager pausesLocationUpdatesAutomatically];
-
-    
+    [self.nearByController.locationManager pausesLocationUpdatesAutomatically];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

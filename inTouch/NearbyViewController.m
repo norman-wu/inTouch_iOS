@@ -11,12 +11,13 @@
 #import "NearbyViewController.h"
 #import "inTouchLogInViewController.h"
 #import "inTouchSignUpViewController.h"
-
+#import "NearByCellDetail.h"
 
 #import <Parse/Parse.h>
 
 @interface NearbyViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *NearbyTableView;
+@property (strong, nonatomic) NSArray *PeopleNearby;
 
 @end
 
@@ -28,6 +29,8 @@
     if (self) {
         // Custom initialization
         self.title = @"NearBy";
+        
+        self.PeopleNearby = [[NSArray alloc] init];
     }
     
     return self;
@@ -61,6 +64,21 @@
         
         // Present log in view controller
         [self presentViewController:logInCtr animated:YES completion:nil];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if([PFUser currentUser]){
+        //init LocationManager
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 10.0f;
+        
+        //start positioning
+        [self.locationManager startUpdatingLocation];
+        
     }
 }
 
@@ -135,19 +153,75 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSLog(@"hello, this is qiangqiang");
+    NearByCellDetail *detail = [[NearByCellDetail alloc] init];
     
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 // if user logged in, dissmiss the login View
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    
+    CLLocation * currLocation = [locations lastObject];
+//    
+//    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.latitude]);
+//    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.longitude]);
+    
+    [self postLocation:currLocation];
+}
+
+- (void)postLocation:(CLLocation *) currLocation
+{
+    PFUser *user = [PFUser currentUser];
+    
+    PFGeoPoint *currGeo = [PFGeoPoint geoPointWithLatitude:currLocation.coordinate.latitude longitude:currLocation.coordinate.longitude];
+    
+    
+    user[@"Location"] = currGeo;
+    
+    [user refresh];
+    
+    [self findNearByPeople];
+}
+
+- (void)findNearByPeople
+{
+    PFUser *user = [PFUser currentUser];
+    
+    // User's location
+    PFGeoPoint *userGeoPoint = user[@"Location"];
+    
+    NSLog(@"%@", @"\n\nFuck IOS caocaocao, below is retri\n\n");
+    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", userGeoPoint.latitude]);
+    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", userGeoPoint.longitude]);
+    NSLog(@"%@", @"\n\nFuck IOS caocaocao, above is retri\n\n");
+
+    // Create a query for places
+    PFQuery *query = [PFUser query];
+    
+    // Interested in locations near user.
+    [query whereKey:@"Location" nearGeoPoint:userGeoPoint];
+    
+    // Limit what could be a lot of points.
+    query.limit = 10;
+    
+    // Final list of objects
+    self.PeopleNearby = [query findObjects];
+
 }
 
 @end

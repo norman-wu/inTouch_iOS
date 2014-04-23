@@ -11,6 +11,8 @@
 #import "AppDelegate.h"
 
 
-@interface NearbyViewController : UIViewController <PFLogInViewControllerDelegate,    PFSignUpViewControllerDelegate, UITableViewDataSource,UITableViewDelegate>
+@interface NearbyViewController : UIViewController <PFLogInViewControllerDelegate,    PFSignUpViewControllerDelegate, UITableViewDataSource,UITableViewDelegate, CLLocationManagerDelegate>
+
+@property(nonatomic, strong) CLLocationManager *locationManager;
 
 @end

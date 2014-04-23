@@ -20,9 +20,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        [self setUpNavi];
-        
     }
     return self;
 }
@@ -105,6 +102,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setUpNavi];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -141,7 +140,7 @@
             PFFile *profileImage = story[@"media"];
             NSData *imageData = [profileImage getData];
             self.profileImage.image = [UIImage imageWithData:imageData];
-        }else{
+        }else if(error){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }
