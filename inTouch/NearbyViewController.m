@@ -11,6 +11,7 @@
 #import "NearbyViewController.h"
 #import "inTouchLogInViewController.h"
 #import "inTouchSignUpViewController.h"
+#import "NearbyCellView.h"
 #import "NearByCellDetail.h"
 
 #import <Parse/Parse.h>
@@ -31,6 +32,11 @@
         self.title = @"NearBy";
         
         self.PeopleNearby = [[NSArray alloc] init];
+        
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        self.locationManager.distanceFilter = 10.0f;
     }
     
     return self;
@@ -47,7 +53,6 @@
     
     // Do any additional setup after loading the view from its nib.
 }
-
 
 // check if user has logged in
 - (void)viewDidAppear:(BOOL)animated
@@ -70,15 +75,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if([PFUser currentUser]){
-        //init LocationManager
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = 10.0f;
-        
         //start positioning
         [self.locationManager startUpdatingLocation];
         
+        [self.NearbyTableView reloadData];
     }
 }
 
@@ -147,29 +147,68 @@
 //--------------cell function -------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return [[self PeopleNearby] count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 48;
+}
+
+- (UIImage *)downloadImage: (PFUser *)user
+{
+    UIImage *cellimage = nil;
+    
+    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    
+    [storyQuery whereKey:@"Author" equalTo:user];
+    
+    NSArray *storyObjects = [storyQuery findObjects];
+    
+    if([storyObjects count] != 0){
+        
+        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
+        PFFile *profileImage = story[@"media"];
+        NSData *imageData = [profileImage getData];
+        cellimage = [UIImage imageWithData:imageData];
+    }
+    
+    return cellimage;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
+    NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    if(indexPath.row < [self.PeopleNearby count]){
+        cell.CellName.text = [self.PeopleNearby objectAtIndex:indexPath.row][@"username"];
+        
+        PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
+        cell.CellImage.image = [self downloadImage:user];
+    }
     return cell;
 }
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NearByCellDetail *detail = [[NearByCellDetail alloc] init];
     
+    PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
+    
+    detail.cellId = [user objectId];
+    
     [self.navigationController pushViewController:detail animated:YES];
 }
 
-// if user logged in, dissmiss the login View
+// if user logged in, dissmiss the login View and start the gps
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    
+    //start positioning
+    [self.locationManager startUpdatingLocation];
 }
 
 
@@ -177,11 +216,9 @@
 {
     
     CLLocation * currLocation = [locations lastObject];
-//    
-//    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.latitude]);
-//    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", currLocation.coordinate.longitude]);
     
     [self postLocation:currLocation];
+    [self findNearByPeople];
 }
 
 - (void)postLocation:(CLLocation *) currLocation
@@ -194,8 +231,6 @@
     user[@"Location"] = currGeo;
     
     [user refresh];
-    
-    [self findNearByPeople];
 }
 
 - (void)findNearByPeople
@@ -205,11 +240,6 @@
     // User's location
     PFGeoPoint *userGeoPoint = user[@"Location"];
     
-    NSLog(@"%@", @"\n\nFuck IOS caocaocao, below is retri\n\n");
-    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", userGeoPoint.latitude]);
-    NSLog(@"%@", [NSString stringWithFormat:@"%3.2f", userGeoPoint.longitude]);
-    NSLog(@"%@", @"\n\nFuck IOS caocaocao, above is retri\n\n");
-
     // Create a query for places
     PFQuery *query = [PFUser query];
     
@@ -221,7 +251,8 @@
     
     // Final list of objects
     self.PeopleNearby = [query findObjects];
-
+    
+    [self.NearbyTableView reloadData];
 }
 
 @end

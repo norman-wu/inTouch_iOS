@@ -273,12 +273,12 @@
 				0BAAB15D18ECFE8500372769 /* NearbyViewController.h */,
 				0BAAB15E18ECFE8500372769 /* NearbyViewController.m */,
 				0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */,
-				0BBA5D6119071F0A00BD09B8 /* NearByCellDetail.h */,
-				0BBA5D6219071F0A00BD09B8 /* NearByCellDetail.m */,
-				0BBA5D6319071F0A00BD09B8 /* NearByCellDetail.xib */,
 				0C5DA3EC19036DB80015D423 /* NearbyCellView.h */,
 				0C5DA3ED19036DB80015D423 /* NearbyCellView.m */,
 				0C5DA3E8190368B00015D423 /* NearbyCellView.xib */,
+				0BBA5D6119071F0A00BD09B8 /* NearByCellDetail.h */,
+				0BBA5D6219071F0A00BD09B8 /* NearByCellDetail.m */,
+				0BBA5D6319071F0A00BD09B8 /* NearByCellDetail.xib */,
 			);
 			name = Nearby;
 			sourceTree = "<group>";

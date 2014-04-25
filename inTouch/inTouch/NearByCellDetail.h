@@ -11,6 +11,7 @@
 
 @interface NearByCellDetail : UIViewController
 
+@property (strong, nonatomic) NSString *cellId;
 @property (strong, nonatomic) IBOutlet UIImageView *cellImage;
 
 @property (strong, nonatomic) IBOutlet UILabel *cellName;

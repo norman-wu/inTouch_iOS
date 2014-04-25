@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"Me";
     }
     return self;
 }
@@ -27,7 +28,6 @@
 - (void)setUpNavi
 {
     // set up title, left and right top buttons of the navigation
-    self.title = @"Profile";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStyleBordered target:self action:@selector(signOutApp)];
     

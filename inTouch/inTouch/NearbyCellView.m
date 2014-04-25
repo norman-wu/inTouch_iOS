@@ -15,17 +15,24 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.addButton = [[UIButton alloc] init];
+        
         
     }
     return self;
 }
 
-
-
+- (void) setUpViewComponents
+{
+    UIImage* button_img = [UIImage imageNamed:@"add.png"];
+    
+    [self.addButton setBackgroundImage:button_img forState:UIControlStateNormal];
+}
 
 - (void)awakeFromNib
 {
     // Initialization code
+    [self setUpViewComponents];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -35,4 +42,6 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)addToContacts:(UIButton *)sender {
+}
 @end

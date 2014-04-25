@@ -10,6 +10,11 @@
 
 @interface NearbyCellView : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *AddFriendButton;
+@property (strong, nonatomic) IBOutlet UIButton *addButton;
+@property (strong, nonatomic) IBOutlet UILabel *CellName;
+@property (strong, nonatomic) IBOutlet UIImageView *CellImage;
+
+- (IBAction)addToContacts:(UIButton *)sender;
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "NearByCellDetail.h"
+#import "Parse/Parse.h"
 
 @interface NearByCellDetail ()
 
@@ -23,41 +24,45 @@
     return self;
 }
 
-- (void)setUpNavi
+
+- (void)setUpViewComponents
 {
     self.title = @"Detail";
+    
+    PFUser *user = [PFQuery getUserObjectWithId:self.cellId];
+    
+    self.cellImage.image = [self downloadImage:user];
+    self.cellName.text = user[@"username"];
+    self.cellEmail.text = user[@"email"];
+    self.cellEducation.text = user[@"education"];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self setUpNavi];
+    [self setUpViewComponents];
 }
 
-- (void)retrieveProfileInfo
+- (UIImage *)downloadImage: (PFUser *)user
 {
+    UIImage *cellimage = nil;
     
-}
-
-- (void)downloadProfileImage
-{
     PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
     
+    [storyQuery whereKey:@"Author" equalTo:user];
     
+    NSArray *storyObjects = [storyQuery findObjects];
     
-    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error && [objects count] != 0) {
-            PFObject *story = [objects objectAtIndex:[objects count] - 1];           // Store results
-            PFFile *profileImage = story[@"media"];
-            NSData *imageData = [profileImage getData];
-            self.cellImage.image = [UIImage imageWithData:imageData];
-        }else if(error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }];
-
+    if([storyObjects count] != 0){
+        
+        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
+        PFFile *profileImage = story[@"media"];
+        NSData *imageData = [profileImage getData];
+        cellimage = [UIImage imageWithData:imageData];
+    }
+    
+    return cellimage;
 }
 
 
