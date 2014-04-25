@@ -7,9 +7,13 @@
 //
 
 #import "ContactsViewController.h"
+#import "ContactsCellDetail.h"
+#import "ContactsViewCell.h"
 #import <Parse/Parse.h>
 
 @interface ContactsViewController ()
+
+@property (strong, nonatomic) NSMutableArray *myFriends;
 
 @end
 
@@ -19,8 +23,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // set up tab name
         self.title = @"Contacts";
+        
     }
     return self;
 }
@@ -29,124 +34,119 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self.ContractsTableView registerNib:[UINib nibWithNibName:@"ContactsCellView" bundle:nil] forCellReuseIdentifier:@"ContactsCellView"];
+    [self loadTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.myFriends = [[NSMutableArray alloc] init];
+    [self findMyFriends];
+    
+    [self.ContractsTableView reloadData];
+}
+
+- (void)loadTableView
+{
+    [self.ContractsTableView registerNib:[UINib nibWithNibName:@"ContactsViewCell" bundle:nil] forCellReuseIdentifier:@"ContactsViewCell"];
     
     self.ContractsTableView.delegate = self;
     self.ContractsTableView.dataSource = self;
-
-    
 }
 
 //--------------------table view------------------
-//All querry in this method is now blocking.
-//(the logic is sequential, don't know how to use asynchronous method)
-
-//TODO suppress run time warnings
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    //creat a querry and count results
-    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
-    
-    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
+    return [self.myFriends count];
+}
 
-    NSInteger numberOfRowsReturned = [friendQuery countObjects];
-    return numberOfRowsReturned ? numberOfRowsReturned : 1;  //1 row if no friend
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //get the cell from the nib
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactsCellView"];
+    ContactsViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactsViewCell"];
     
-    //instantiate new cell if nil
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"ContactsCellView"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    
-    //query database
-    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
-    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
-    NSArray *friendQueryRecords = [friendQuery findObjects];
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     //show friends if any
-    if ([friendQueryRecords count]) {
+    if ([self.myFriends count] != 0) {
+        PFObject *friendPointer = [self.myFriends objectAtIndex:indexPath.row];
         
-        NSInteger rowNumber = indexPath.row;
+        PFUser *friend = [PFQuery getUserObjectWithId:friendPointer.objectId];
         
+        NSLog(@"\n\n%@\n\n", friend[@"username"]);
         
-        //first get the friend table record, then get the friend
-        PFObject *friend = friendQueryRecords[rowNumber][@"Friend_id"]; //get a user obj
-        
-        
-        //query the user table for more info
-        PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
-        PFObject *userRecord = [userQuery getObjectWithId:friend.objectId]; //get the user obj
-        
-        
-        //fill the cell
-        cell.textLabel.text = userRecord[@"username"];
-        cell.detailTextLabel.text = userRecord[@"email"];
+        cell.contactName.text = friend[@"username"];
+        cell.contactImage.image = [self downloadImage:friend];
         
         
     } else{
         //no friend view
-        cell.textLabel.text = @"Poor you! You have no friends yet. ";
-        cell.detailTextLabel.text = @" It's ok. Keep inTouch and I could be your friend.";
-       
+        cell.contactName.text = @"Poor you! You have no friends yet. ";
     }
-    
     
     return cell;
 }
 
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    ContactsCellDetail *detail = [[ContactsCellDetail alloc] init];
     
-//    //query database non blocking sample code for future reference @Weishi
-//    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
-//    
-//    [friendQuery whereKey:@"User_id" equalTo:[PFUser currentUser]];
-//
-//    
-//    
-//    [friendQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        if (!error) {
-//            //show friends if any
-//            if([objects count]){
-//                for(PFObject *friendRecord in objects){//interate thru Friend table
-//                    
-//                    PFObject *friend = friendRecord[@"Friend_id"]; //get the User obj
-//                    
-//                    //query the user table for more info
-//                    PFQuery *userQuery = [PFQuery queryWithClassName:@"_User"];
-//                    PFObject *userRecord = [userQuery getObjectWithId:friend.objectId];
-//                    NSLog(@"%@, %@", userRecord[@"username"],userRecord[@"email"]);
-//                    
-//                    //TODO doubt: why can't use friend[@“username”]?
-//       
-//                }
-//            }
-//        }else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//        }
-//    }];
+    PFUser *user = [self.myFriends objectAtIndex:indexPath.row];
     
-    NSLog(@"Hello, this is contact");
+    detail.contactId = [user objectId];
     
-    
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
-
-- (void)didReceiveMemoryWarning
+//--------------------Backend Parse Functions------------------
+- (void)findMyFriends
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+    [friendQuery whereKey:@"User_id" equalTo:user];
+    
+    for(int i = 0; i < [[friendQuery findObjects] count]; i++){
+        [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
+    }
+    
+    PFQuery *userQuery = [PFQuery queryWithClassName:@"Friend"];
+    
+    [userQuery whereKey:@"Friend_id" equalTo:user];
+    
+    for(int i = 0; i < [[userQuery findObjects] count]; i++){
+        [self.myFriends addObject:[[userQuery findObjects] objectAtIndex:i][@"User_id"]];
+    }
 }
+
+- (UIImage *)downloadImage: (PFUser *)user
+{
+    UIImage *cellimage = nil;
+    
+    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    
+    [storyQuery whereKey:@"Author" equalTo:user];
+    
+    NSArray *storyObjects = [storyQuery findObjects];
+    
+    if([storyObjects count] != 0){
+        
+        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
+        PFFile *profileImage = story[@"media"];
+        NSData *imageData = [profileImage getData];
+        cellimage = [UIImage imageWithData:imageData];
+    }
+    
+    return cellimage;
+}
+
+
+
+
 
 @end

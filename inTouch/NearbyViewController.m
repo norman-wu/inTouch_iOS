@@ -12,7 +12,6 @@
 #import "inTouchLogInViewController.h"
 #import "inTouchSignUpViewController.h"
 #import "NearbyCellView.h"
-#import "NearByCellDetail.h"
 
 #import <Parse/Parse.h>
 
@@ -46,14 +45,29 @@
 {
     [super viewDidLoad];
     
+    [self loadTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if([PFUser currentUser]){
+        //start positioning
+        [self.locationManager startUpdatingLocation];
+        
+        [self.NearbyTableView reloadData];
+    }
+}
+
+- (void)loadTableView
+{
     [self.NearbyTableView registerNib:[UINib nibWithNibName:@"NearbyCellView" bundle:nil] forCellReuseIdentifier:@"NearbyCellView"];
     
     self.NearbyTableView.delegate = self;
     self.NearbyTableView.dataSource = self;
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
+
+//--------------------Check Sign in------------------
 // check if user has logged in
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -69,16 +83,6 @@
         
         // Present log in view controller
         [self presentViewController:logInCtr animated:YES completion:nil];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    if([PFUser currentUser]){
-        //start positioning
-        [self.locationManager startUpdatingLocation];
-        
-        [self.NearbyTableView reloadData];
     }
 }
 
@@ -144,15 +148,16 @@
     
     return informationComplete;
 }
-//--------------cell function -------------------
+
+//--------------table view-------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self PeopleNearby] count];
+    return [self.PeopleNearby count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 48;
+    return 65;
 }
 
 - (UIImage *)downloadImage: (PFUser *)user
@@ -179,27 +184,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if(indexPath.row < [self.PeopleNearby count]){
-        cell.CellName.text = [self.PeopleNearby objectAtIndex:indexPath.row][@"username"];
-        
         PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
-        cell.CellImage.image = [self downloadImage:user];
+        
+        cell.CellName.text = user[@"username"];
+        NSLog(@"\n\n%@\n\n", user[@"education"]);
+        cell.cellEducation.text = user[@"education"];
+        cell.CellImage.image = [self downloadImage:user];   
     }
     return cell;
-}
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NearByCellDetail *detail = [[NearByCellDetail alloc] init];
-    
-    PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
-    
-    detail.cellId = [user objectId];
-    
-    [self.navigationController pushViewController:detail animated:YES];
 }
 
 // if user logged in, dissmiss the login View and start the gps
@@ -221,7 +215,7 @@
     [self findNearByPeople];
 }
 
-- (void)postLocation:(CLLocation *) currLocation
+- (void) postLocation:(CLLocation *) currLocation
 {
     PFUser *user = [PFUser currentUser];
     

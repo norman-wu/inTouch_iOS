@@ -1,19 +1,18 @@
 //
-//  NearByCellDetail.m
+//  ContactsCellDetail.m
 //  inTouch
 //
-//  Created by yigu on 4/22/14.
+//  Created by yigu on 4/24/14.
 //  Copyright (c) 2014 yigu. All rights reserved.
 //
 
-#import "NearByCellDetail.h"
-#import "Parse/Parse.h"
+#import "ContactsCellDetail.h"
 
-@interface NearByCellDetail ()
+@interface ContactsCellDetail ()
 
 @end
 
-@implementation NearByCellDetail
+@implementation ContactsCellDetail
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,24 +23,23 @@
     return self;
 }
 
-
-- (void)setUpViewComponents
-{
-    self.title = @"Detail";
-    
-    PFUser *user = [PFQuery getUserObjectWithId:self.cellId];
-    
-    self.cellImage.image = [self downloadImage:user];
-    self.cellName.text = user[@"username"];
-    self.cellEmail.text = user[@"email"];
-    self.cellEducation.text = user[@"education"];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self setUpViewComponents];
+}
+
+- (void)setUpViewComponents
+{
+    self.title = @"Detail";
+    
+    PFUser *user = [PFQuery getUserObjectWithId:self.contactId];
+    
+    self.contactImage.image = [self downloadImage:user];
+    self.contactName.text = user[@"username"];
+    self.contactEmail.text = user[@"email"];
+    self.contactEducation.text = user[@"education"];
 }
 
 - (UIImage *)downloadImage: (PFUser *)user
@@ -64,6 +62,5 @@
     
     return cellimage;
 }
-
 
 @end
