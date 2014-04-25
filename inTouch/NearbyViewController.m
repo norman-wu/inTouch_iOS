@@ -16,8 +16,10 @@
 #import <Parse/Parse.h>
 
 @interface NearbyViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *NearbyTableView;
 @property (strong, nonatomic) NSArray *PeopleNearby;
+@property (strong, nonatomic) NSMutableArray *myFriends;
 
 @end
 
@@ -29,16 +31,22 @@
     if (self) {
         // Custom initialization
         self.title = @"NearBy";
+        [self.tabBarItem setImage:[UIImage imageNamed:@"nearBy.png"]];
         
         self.PeopleNearby = [[NSArray alloc] init];
+        self.myFriends = [[NSMutableArray alloc] init];
         
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = 10.0f;
     }
     
     return self;
+}
+
+- (void)setUpGPS
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 10.0f;
 }
 
 - (void)viewDidLoad
@@ -52,8 +60,10 @@
 {
     if([PFUser currentUser]){
         //start positioning
+        [self setUpGPS];
         [self.locationManager startUpdatingLocation];
         
+        [self findMyFriends];
         [self.NearbyTableView reloadData];
     }
 }
@@ -160,6 +170,57 @@
     return 65;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
+    
+    if(indexPath.row < [self.PeopleNearby count]){
+        PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
+        
+        cell.buttonImage = [UIImage imageNamed:@"addbutton.jpg"];
+        // check if someone is already user's friend
+        for(int i = 0; i < [self.myFriends count]; i++){
+            PFObject *friendPointer = [self.myFriends objectAtIndex:i];
+            if([[user objectId] isEqual:friendPointer.objectId]){
+                cell.buttonImage = [UIImage imageNamed:@"friend.jpg"];
+            }
+        }
+        
+        if([user.objectId isEqual:[PFUser currentUser].objectId]){
+            cell.buttonImage = [UIImage imageNamed:@"me.png"];
+        }
+        
+        // pass the value to cell
+        cell.me = [PFUser currentUser];
+        cell.friend = user;
+        
+        [cell.addButton setBackgroundImage:cell.buttonImage forState:UIControlStateNormal];
+        cell.CellName.text = user[@"username"];
+        cell.cellEducation.text = user[@"education"];
+        cell.CellImage.image = [self downloadImage:user];   
+    }
+    return cell;
+}
+
+// if user logged in, dissmiss the login View and start the gps
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //start positioning
+    [self.locationManager startUpdatingLocation];
+}
+
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation * currLocation = [locations lastObject];
+    
+    [self postLocation:currLocation];
+    [self findNearByPeople];
+}
+
+//--------------------Backend Parse Functions------------------
 - (UIImage *)downloadImage: (PFUser *)user
 {
     UIImage *cellimage = nil;
@@ -181,46 +242,12 @@
     return cellimage;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
-    
-    if(indexPath.row < [self.PeopleNearby count]){
-        PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
-        
-        cell.CellName.text = user[@"username"];
-        NSLog(@"\n\n%@\n\n", user[@"education"]);
-        cell.cellEducation.text = user[@"education"];
-        cell.CellImage.image = [self downloadImage:user];   
-    }
-    return cell;
-}
-
-// if user logged in, dissmiss the login View and start the gps
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    //start positioning
-    [self.locationManager startUpdatingLocation];
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    
-    CLLocation * currLocation = [locations lastObject];
-    
-    [self postLocation:currLocation];
-    [self findNearByPeople];
-}
 
 - (void) postLocation:(CLLocation *) currLocation
 {
     PFUser *user = [PFUser currentUser];
     
     PFGeoPoint *currGeo = [PFGeoPoint geoPointWithLatitude:currLocation.coordinate.latitude longitude:currLocation.coordinate.longitude];
-    
     
     user[@"Location"] = currGeo;
     
@@ -248,5 +275,18 @@
     
     [self.NearbyTableView reloadData];
 }
+
+- (void)findMyFriends
+{
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
+    [friendQuery whereKey:@"User_id" equalTo:user];
+    
+    for(int i = 0; i < [[friendQuery findObjects] count]; i++){
+        [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
+    }
+}
+
 
 @end

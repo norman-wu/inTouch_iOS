@@ -21,6 +21,7 @@
     if (self) {
         // Custom initialization
         self.title = @"Me";
+        [self.tabBarItem setImage:[UIImage imageNamed:@"meTab.png"]];
     }
     return self;
 }

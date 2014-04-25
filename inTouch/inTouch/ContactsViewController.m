@@ -13,8 +13,6 @@
 
 @interface ContactsViewController ()
 
-@property (strong, nonatomic) NSMutableArray *myFriends;
-
 @end
 
 @implementation ContactsViewController
@@ -25,6 +23,7 @@
     if (self) {
         // set up tab name
         self.title = @"Contacts";
+        [self.tabBarItem setImage:[UIImage imageNamed:@"contacts.png"]];
         
     }
     return self;
@@ -77,8 +76,6 @@
         
         PFUser *friend = [PFQuery getUserObjectWithId:friendPointer.objectId];
         
-        NSLog(@"\n\n%@\n\n", friend[@"username"]);
-        
         cell.contactName.text = friend[@"username"];
         cell.contactImage.image = [self downloadImage:friend];
         
@@ -113,14 +110,6 @@
     
     for(int i = 0; i < [[friendQuery findObjects] count]; i++){
         [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
-    }
-    
-    PFQuery *userQuery = [PFQuery queryWithClassName:@"Friend"];
-    
-    [userQuery whereKey:@"Friend_id" equalTo:user];
-    
-    for(int i = 0; i < [[userQuery findObjects] count]; i++){
-        [self.myFriends addObject:[[userQuery findObjects] objectAtIndex:i][@"User_id"]];
     }
 }
 

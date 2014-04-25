@@ -8,6 +8,7 @@
 
 #import "NearbyCellView.h"
 
+
 @implementation NearbyCellView
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -32,16 +33,34 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    [self setUpViewComponents];
+    //[self setUpViewComponents];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
+// add to Contacts
 - (IBAction)addToContacts:(UIButton *)sender {
+    
+    UIImage *addImage = [UIImage imageNamed:@"addbutton.jpg"];
+    // can only add strangers as friend
+    if(self.buttonImage == addImage){
+        // save a new friend
+        PFObject *newFriend = [PFObject objectWithClassName:@"Friend"];
+        newFriend[@"User_id"] = self.me;
+        newFriend[@"Friend_id"] = self.friend;
+        
+        [newFriend saveInBackground];
+        
+        // change image of the button after a 2 seconds
+        [UIView animateWithDuration:2.0 animations:^{
+            self.buttonImage = [UIImage imageNamed:@"friend.jpg"];
+            [self.addButton setBackgroundImage:self.buttonImage forState:UIControlStateNormal];
+        }];
+    }
 }
 @end

@@ -14,6 +14,13 @@
 		0B35D446190A008100BEAF8A /* ContactsCellDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B35D444190A008100BEAF8A /* ContactsCellDetail.xib */; };
 		0B35D44A190A03A700BEAF8A /* ContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35D448190A03A700BEAF8A /* ContactsViewCell.m */; };
 		0B35D44B190A03A700BEAF8A /* ContactsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B35D449190A03A700BEAF8A /* ContactsViewCell.xib */; };
+		0B3AA6C9190B1440006996F1 /* addbutton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6C8190B1440006996F1 /* addbutton.jpg */; };
+		0B3AA6CB190B1445006996F1 /* friend.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6CA190B1445006996F1 /* friend.jpg */; };
+		0B3AA6CF190B1712006996F1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6CE190B1712006996F1 /* icon.png */; };
+		0B3AA6D1190B235A006996F1 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D0190B235A006996F1 /* me.png */; };
+		0B3AA6D3190B25FE006996F1 /* nearBy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D2190B25FE006996F1 /* nearBy.png */; };
+		0B3AA6D6190B2620006996F1 /* meTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D5190B2620006996F1 /* meTab.png */; };
+		0B3AA6D8190B2631006996F1 /* contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D7190B2631006996F1 /* contacts.png */; };
 		0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12818ECFD4D00372769 /* Foundation.framework */; };
 		0BAAB12B18ECFD4D00372769 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */; };
 		0BAAB12D18ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
@@ -76,6 +83,13 @@
 		0B35D447190A03A700BEAF8A /* ContactsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewCell.h; sourceTree = "<group>"; };
 		0B35D448190A03A700BEAF8A /* ContactsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewCell.m; sourceTree = "<group>"; };
 		0B35D449190A03A700BEAF8A /* ContactsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewCell.xib; sourceTree = "<group>"; };
+		0B3AA6C8190B1440006996F1 /* addbutton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addbutton.jpg; sourceTree = "<group>"; };
+		0B3AA6CA190B1445006996F1 /* friend.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = friend.jpg; sourceTree = "<group>"; };
+		0B3AA6CE190B1712006996F1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		0B3AA6D0190B235A006996F1 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
+		0B3AA6D2190B25FE006996F1 /* nearBy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nearBy.png; sourceTree = "<group>"; };
+		0B3AA6D5190B2620006996F1 /* meTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meTab.png; sourceTree = "<group>"; };
+		0B3AA6D7190B2631006996F1 /* contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contacts.png; sourceTree = "<group>"; };
 		0BAAB12518ECFD4D00372769 /* inTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = inTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAAB12818ECFD4D00372769 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0BAAB12A18ECFD4D00372769 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +177,11 @@
 		0B240B3D18EE05AE0083D5E2 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0B3AA6D4190B2603006996F1 /* tabs */,
+				0B3AA6D0190B235A006996F1 /* me.png */,
+				0B3AA6C8190B1440006996F1 /* addbutton.jpg */,
+				0B3AA6CA190B1445006996F1 /* friend.jpg */,
+				0B3AA6CE190B1712006996F1 /* icon.png */,
 				0BBA5D5F1906D86700BD09B8 /* iTunesArtwork@2x.png */,
 				0C5DA3F1190378C00015D423 /* add.png */,
 				0C5DA3EF190373BF0015D423 /* axj.jpg */,
@@ -171,6 +190,16 @@
 				0B240B4418EE0A650083D5E2 /* App_Logo.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		0B3AA6D4190B2603006996F1 /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				0B3AA6D7190B2631006996F1 /* contacts.png */,
+				0B3AA6D5190B2620006996F1 /* meTab.png */,
+				0B3AA6D2190B25FE006996F1 /* nearBy.png */,
+			);
+			name = tabs;
 			sourceTree = "<group>";
 		};
 		0BAAB11C18ECFD4D00372769 = {
@@ -389,13 +418,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */,
+				0B3AA6C9190B1440006996F1 /* addbutton.jpg in Resources */,
+				0B3AA6D8190B2631006996F1 /* contacts.png in Resources */,
+				0B3AA6CF190B1712006996F1 /* icon.png in Resources */,
+				0B3AA6D6190B2620006996F1 /* meTab.png in Resources */,
 				0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */,
 				0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */,
 				0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */,
+				0B3AA6D3190B25FE006996F1 /* nearBy.png in Resources */,
 				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
 				0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */,
 				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
+				0B3AA6CB190B1445006996F1 /* friend.jpg in Resources */,
+				0B3AA6D1190B235A006996F1 /* me.png in Resources */,
 				0B35D446190A008100BEAF8A /* ContactsCellDetail.xib in Resources */,
 				0BBA5D601906D86700BD09B8 /* iTunesArtwork@2x.png in Resources */,
 				0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */,

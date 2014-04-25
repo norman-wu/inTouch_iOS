@@ -10,6 +10,7 @@
 
 @interface ContactsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) NSMutableArray *myFriends;
 @property (weak, nonatomic) IBOutlet UITableView *ContractsTableView;
 
 //test push for Weishi 4.20
