@@ -45,6 +45,7 @@
 		0BBA5D601906D86700BD09B8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBA5D5F1906D86700BD09B8 /* iTunesArtwork@2x.png */; };
 		0BBA5D6419071F0A00BD09B8 /* NearByCellDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBA5D6219071F0A00BD09B8 /* NearByCellDetail.m */; };
 		0BBA5D6519071F0A00BD09B8 /* NearByCellDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBA5D6319071F0A00BD09B8 /* NearByCellDetail.xib */; };
+		0C0FAC83190772B400BA0D07 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */; };
 		0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3E8190368B00015D423 /* NearbyCellView.xib */; };
 		0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DA3ED19036DB80015D423 /* NearbyCellView.m */; };
 		0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3EF190373BF0015D423 /* axj.jpg */; };
@@ -113,6 +114,7 @@
 		0BBA5D6119071F0A00BD09B8 /* NearByCellDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByCellDetail.h; sourceTree = "<group>"; };
 		0BBA5D6219071F0A00BD09B8 /* NearByCellDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearByCellDetail.m; sourceTree = "<group>"; };
 		0BBA5D6319071F0A00BD09B8 /* NearByCellDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearByCellDetail.xib; sourceTree = "<group>"; };
+		0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		0C5DA3E8190368B00015D423 /* NearbyCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyCellView.xib; sourceTree = "<group>"; };
 		0C5DA3EC19036DB80015D423 /* NearbyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyCellView.h; sourceTree = "<group>"; };
 		0C5DA3ED19036DB80015D423 /* NearbyCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyCellView.m; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				0BAAB12D18ECFD4D00372769 /* UIKit.framework in Frameworks */,
 				0BAAB17018ED03A200372769 /* Parse.framework in Frameworks */,
 				0BAAB12918ECFD4D00372769 /* Foundation.framework in Frameworks */,
+				0C0FAC83190772B400BA0D07 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +197,7 @@
 		0BAAB12718ECFD4D00372769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */,
 				0BAAB18118ED042F00372769 /* SystemConfiguration.framework */,
 				0BAAB17F18ED042500372769 /* StoreKit.framework */,
 				0BAAB17D18ED041A00372769 /* Security.framework */,
