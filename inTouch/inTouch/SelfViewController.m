@@ -155,4 +155,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

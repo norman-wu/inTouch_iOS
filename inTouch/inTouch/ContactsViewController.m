@@ -77,7 +77,7 @@
         PFUser *friend = [PFQuery getUserObjectWithId:friendPointer.objectId];
         
         cell.contactName.text = friend[@"username"];
-        cell.contactImage.image = [self downloadImage:friend];
+        cell.contactImage.image = [self downloadImage:friendPointer];
         
         
     } else{

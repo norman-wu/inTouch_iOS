@@ -175,7 +175,10 @@
     NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
     
     if(indexPath.row < [self.PeopleNearby count]){
-        PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
+        PFObject *userPointer = [self.PeopleNearby objectAtIndex:indexPath.row];
+        PFUser *user = [PFQuery getUserObjectWithId:userPointer.objectId];
+        
+        [user refresh];
         
         cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
         // check if someone is already user's friend
@@ -197,7 +200,9 @@
         [cell.addButton setBackgroundImage:cell.buttonImage forState:UIControlStateNormal];
         cell.CellName.text = user[@"username"];
         cell.cellEducation.text = user[@"education"];
-        cell.CellImage.image = [self downloadImage:user];   
+        
+        cell.CellImage.image = [self downloadImage:user];
+        
     }
     
     return cell;
@@ -209,6 +214,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     //start positioning
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self.locationManager startUpdatingLocation];
 }
 
@@ -224,6 +235,7 @@
 //--------------------Backend Parse Functions------------------
 - (UIImage *)downloadImage: (PFUser *)user
 {
+    
     UIImage *cellimage = nil;
     
     PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
@@ -233,8 +245,8 @@
     NSArray *storyObjects = [storyQuery findObjects];
     
     if([storyObjects count] != 0){
-        
-        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
+        NSLog(@"%@", user.username);
+        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // get results
         PFFile *profileImage = story[@"media"];
         NSData *imageData = [profileImage getData];
         cellimage = [UIImage imageWithData:imageData];
