@@ -35,7 +35,7 @@
         
         self.PeopleNearby = [[NSArray alloc] init];
         self.myFriends = [[NSMutableArray alloc] init];
-        
+ 
     }
     
     return self;
@@ -199,6 +199,7 @@
         cell.cellEducation.text = user[@"education"];
         cell.CellImage.image = [self downloadImage:user];   
     }
+    
     return cell;
 }
 
