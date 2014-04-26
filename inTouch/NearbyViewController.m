@@ -177,12 +177,12 @@
     if(indexPath.row < [self.PeopleNearby count]){
         PFUser *user = [self.PeopleNearby objectAtIndex:indexPath.row];
         
-        cell.buttonImage = [UIImage imageNamed:@"addbutton.jpg"];
+        cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
         // check if someone is already user's friend
         for(int i = 0; i < [self.myFriends count]; i++){
             PFObject *friendPointer = [self.myFriends objectAtIndex:i];
             if([[user objectId] isEqual:friendPointer.objectId]){
-                cell.buttonImage = [UIImage imageNamed:@"friend.jpg"];
+                cell.buttonImage = [UIImage imageNamed:@"friend.png"];
             }
         }
         

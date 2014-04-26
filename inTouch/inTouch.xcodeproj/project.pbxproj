@@ -14,9 +14,6 @@
 		0B35D446190A008100BEAF8A /* ContactsCellDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B35D444190A008100BEAF8A /* ContactsCellDetail.xib */; };
 		0B35D44A190A03A700BEAF8A /* ContactsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35D448190A03A700BEAF8A /* ContactsViewCell.m */; };
 		0B35D44B190A03A700BEAF8A /* ContactsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B35D449190A03A700BEAF8A /* ContactsViewCell.xib */; };
-		0B3AA6C9190B1440006996F1 /* addbutton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6C8190B1440006996F1 /* addbutton.jpg */; };
-		0B3AA6CB190B1445006996F1 /* friend.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6CA190B1445006996F1 /* friend.jpg */; };
-		0B3AA6CF190B1712006996F1 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6CE190B1712006996F1 /* icon.png */; };
 		0B3AA6D1190B235A006996F1 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D0190B235A006996F1 /* me.png */; };
 		0B3AA6D3190B25FE006996F1 /* nearBy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D2190B25FE006996F1 /* nearBy.png */; };
 		0B3AA6D6190B2620006996F1 /* meTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3AA6D5190B2620006996F1 /* meTab.png */; };
@@ -51,14 +48,14 @@
 		0BAAB18218ED042F00372769 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB18118ED042F00372769 /* SystemConfiguration.framework */; };
 		0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD268118EE410B00E1610C /* SignInUp.JPG */; };
 		0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD268318EE41C500E1610C /* SignInUp2.JPG */; };
+		0BB17BF5190B9BD10068B305 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB17BF4190B9BD10068B305 /* Icon-76@2x.png */; };
+		0BB17BF7190B9C1C0068B305 /* friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB17BF6190B9C1C0068B305 /* friend.png */; };
+		0BB17BF9190B9C290068B305 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB17BF8190B9C290068B305 /* addbutton.png */; };
 		0BB5B6CF190317C200E0D15B /* SelfDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */; };
 		0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */; };
-		0BBA5D601906D86700BD09B8 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBA5D5F1906D86700BD09B8 /* iTunesArtwork@2x.png */; };
 		0C0FAC83190772B400BA0D07 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */; };
 		0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3E8190368B00015D423 /* NearbyCellView.xib */; };
 		0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DA3ED19036DB80015D423 /* NearbyCellView.m */; };
-		0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3EF190373BF0015D423 /* axj.jpg */; };
-		0C5DA3F2190378C00015D423 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3F1190378C00015D423 /* add.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,9 +80,6 @@
 		0B35D447190A03A700BEAF8A /* ContactsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewCell.h; sourceTree = "<group>"; };
 		0B35D448190A03A700BEAF8A /* ContactsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewCell.m; sourceTree = "<group>"; };
 		0B35D449190A03A700BEAF8A /* ContactsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewCell.xib; sourceTree = "<group>"; };
-		0B3AA6C8190B1440006996F1 /* addbutton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addbutton.jpg; sourceTree = "<group>"; };
-		0B3AA6CA190B1445006996F1 /* friend.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = friend.jpg; sourceTree = "<group>"; };
-		0B3AA6CE190B1712006996F1 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0B3AA6D0190B235A006996F1 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
 		0B3AA6D2190B25FE006996F1 /* nearBy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nearBy.png; sourceTree = "<group>"; };
 		0B3AA6D5190B2620006996F1 /* meTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = meTab.png; sourceTree = "<group>"; };
@@ -127,16 +121,16 @@
 		0BAAB18118ED042F00372769 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0BAD268118EE410B00E1610C /* SignInUp.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SignInUp.JPG; sourceTree = "<group>"; };
 		0BAD268318EE41C500E1610C /* SignInUp2.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SignInUp2.JPG; sourceTree = "<group>"; };
+		0BB17BF4190B9BD10068B305 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		0BB17BF6190B9C1C0068B305 /* friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friend.png; sourceTree = "<group>"; };
+		0BB17BF8190B9C290068B305 /* addbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addbutton.png; sourceTree = "<group>"; };
 		0BB5B6CC190317C200E0D15B /* SelfDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfDetailViewController.h; sourceTree = "<group>"; };
 		0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfDetailViewController.m; sourceTree = "<group>"; };
 		0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelfDetailViewController.xib; sourceTree = "<group>"; };
-		0BBA5D5F1906D86700BD09B8 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		0C5DA3E8190368B00015D423 /* NearbyCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyCellView.xib; sourceTree = "<group>"; };
 		0C5DA3EC19036DB80015D423 /* NearbyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyCellView.h; sourceTree = "<group>"; };
 		0C5DA3ED19036DB80015D423 /* NearbyCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyCellView.m; sourceTree = "<group>"; };
-		0C5DA3EF190373BF0015D423 /* axj.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = axj.jpg; sourceTree = "<group>"; };
-		0C5DA3F1190378C00015D423 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,12 +173,9 @@
 			children = (
 				0B3AA6D4190B2603006996F1 /* tabs */,
 				0B3AA6D0190B235A006996F1 /* me.png */,
-				0B3AA6C8190B1440006996F1 /* addbutton.jpg */,
-				0B3AA6CA190B1445006996F1 /* friend.jpg */,
-				0B3AA6CE190B1712006996F1 /* icon.png */,
-				0BBA5D5F1906D86700BD09B8 /* iTunesArtwork@2x.png */,
-				0C5DA3F1190378C00015D423 /* add.png */,
-				0C5DA3EF190373BF0015D423 /* axj.jpg */,
+				0BB17BF8190B9C290068B305 /* addbutton.png */,
+				0BB17BF6190B9C1C0068B305 /* friend.png */,
+				0BB17BF4190B9BD10068B305 /* Icon-76@2x.png */,
 				0BAD268318EE41C500E1610C /* SignInUp2.JPG */,
 				0BAD268118EE410B00E1610C /* SignInUp.JPG */,
 				0B240B4418EE0A650083D5E2 /* App_Logo.png */,
@@ -418,10 +409,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BAD268218EE410B00E1610C /* SignInUp.JPG in Resources */,
-				0B3AA6C9190B1440006996F1 /* addbutton.jpg in Resources */,
 				0B3AA6D8190B2631006996F1 /* contacts.png in Resources */,
-				0B3AA6CF190B1712006996F1 /* icon.png in Resources */,
 				0B3AA6D6190B2620006996F1 /* meTab.png in Resources */,
+				0BB17BF7190B9C1C0068B305 /* friend.png in Resources */,
+				0BB17BF5190B9BD10068B305 /* Icon-76@2x.png in Resources */,
 				0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */,
 				0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */,
 				0BAAB16E18ECFF0900372769 /* SelfViewController.xib in Resources */,
@@ -430,15 +421,12 @@
 				0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */,
 				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
-				0B3AA6CB190B1445006996F1 /* friend.jpg in Resources */,
 				0B3AA6D1190B235A006996F1 /* me.png in Resources */,
 				0B35D446190A008100BEAF8A /* ContactsCellDetail.xib in Resources */,
-				0BBA5D601906D86700BD09B8 /* iTunesArtwork@2x.png in Resources */,
-				0C5DA3F0190373BF0015D423 /* axj.jpg in Resources */,
-				0C5DA3F2190378C00015D423 /* add.png in Resources */,
 				0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */,
 				0B240B4518EE0A650083D5E2 /* App_Logo.png in Resources */,
 				0B35D44B190A03A700BEAF8A /* ContactsViewCell.xib in Resources */,
+				0BB17BF9190B9C290068B305 /* addbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
