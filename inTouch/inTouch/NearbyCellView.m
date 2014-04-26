@@ -46,7 +46,7 @@
 // add to Contacts
 - (IBAction)addToContacts:(UIButton *)sender {
     
-    UIImage *addImage = [UIImage imageNamed:@"addbutton.jpg"];
+    UIImage *addImage = [UIImage imageNamed:@"addbutton.png"];
     // can only add strangers as friend
     if(self.buttonImage == addImage){
         // save a new friend
@@ -58,7 +58,7 @@
         
         // change image of the button after a 2 seconds
         [UIView animateWithDuration:2.0 animations:^{
-            self.buttonImage = [UIImage imageNamed:@"friend.jpg"];
+            self.buttonImage = [UIImage imageNamed:@"friend.png"];
             [self.addButton setBackgroundImage:self.buttonImage forState:UIControlStateNormal];
         }];
     }
