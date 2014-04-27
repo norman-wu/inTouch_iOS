@@ -65,6 +65,8 @@
         
         [self findMyFriends];
         [self.NearbyTableView reloadData];
+        
+        
     }
 }
 
@@ -77,13 +79,19 @@
 }
 
 
+
 //--------------------Check Sign in------------------
 // check if user has logged in
 - (void)viewDidAppear:(BOOL)animated
 {
+    
+    
+    [super viewDidAppear:animated];
+    
     if(![PFUser currentUser]){
         // Instantiate our custom log in view controller
         inTouchLogInViewController *logInCtr = [self setUpLogIn];
+        
         
         // Instantiate our custom sign up view controller
         inTouchSignUpViewController *signUpCtr = [self setUpSignUp];
@@ -102,13 +110,17 @@
     [logInCtr setDelegate:self];
     [logInCtr setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
     [logInCtr setFields: PFLogInFieldsDefault
-     | PFLogInFieldsTwitter
-     | PFLogInFieldsFacebook
+     //| PFLogInFieldsFacebook
      | PFLogInFieldsSignUpButton
      | PFLogInFieldsDismissButton];
     
+    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    
+    
     return logInCtr;
 }
+
+
 
 - (inTouchSignUpViewController *) setUpSignUp
 {
@@ -131,8 +143,11 @@
                                delegate:nil
                       cancelButtonTitle:@"ok"
                       otherButtonTitles:nil] show];
-    return NO; // Interrupt login process
+    
+    
+         return NO; // Interrupt login process
 }
+
 
 // Sent to the delegate to determine whether the sign up request should be submitted to the server.
 - (BOOL)signUpViewController:(PFSignUpViewController *)signUpController shouldBeginSignUp:(NSDictionary *)info {
@@ -215,6 +230,9 @@
     
     //start positioning
     [self.locationManager startUpdatingLocation];
+    
+    
+    
 }
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
@@ -300,6 +318,31 @@
         [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
     }
 }
+
+//-------------------------Facebook-----------------------
+#pragma mark - FBLoginViewDelegate
+
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    NSLog(@"FACEBOOK LOGGED IN");
+    }
+
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user {
+    // here we use helper properties of FBGraphUser to dot-through to first_name and
+    // id properties of the json response from the server; alternatively we could use
+    // NSDictionary methods such as objectForKey to get values from the my json object
+    NSLog(@"----------------FACEBOOK---------------");
+    NSLog(user.first_name);
+    NSLog(@"----------------FACEBOOK---------------");
+   // self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
+    // setting the profileID property of the FBProfilePictureView instance
+    // causes the control to fetch and display the profile picture for the user
+   // self.profilePic.profileID = user.id;
+   // self.loggedInUser = user;
+}
+
+
+
 
 
 @end

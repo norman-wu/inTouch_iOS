@@ -12,5 +12,6 @@
 
 @interface inTouchLogInViewController : PFLogInViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+-(void)pickFriendsClick: (id)sender;
 
 @end
