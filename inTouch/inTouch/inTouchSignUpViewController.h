@@ -10,5 +10,9 @@
 #import <UIKit/UIKit.h>
 
 @interface inTouchSignUpViewController : PFSignUpViewController
+{
+    NSInteger flag;
+}
+
 
 @end

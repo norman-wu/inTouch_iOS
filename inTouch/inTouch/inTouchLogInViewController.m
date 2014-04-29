@@ -110,7 +110,7 @@
     
     [self.buttonPickFriends addTarget:self action:@selector(pickFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.buttonPickFriends];
+    //[self.view addSubview:self.buttonPickFriends];
     
     
     
@@ -127,7 +127,7 @@
 #endif
     loginview.delegate = self;
     
-    [self.view addSubview:loginview];
+    //[self.view addSubview:loginview];
     
     [loginview sizeToFit];
 
@@ -144,6 +144,8 @@
     self.buttonPickFriends.enabled = YES;
 }
 
+
+
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     // here we use helper properties of FBGraphUser to dot-through to first_name and
@@ -154,15 +156,11 @@
     // causes the control to fetch and display the profile picture for the user
     //self.profilePic.profileID = user.id;
     //self.loggedInUser = user;
-    NSLog(user.first_name);
-    NSLog(user.last_name);
     
-        
-
-    //[NearbyViewController.self dismissViewControllerAnimated:YES completion:nil];
-    
-    //start positioning
+   
+     
 }
+
 
 
 
