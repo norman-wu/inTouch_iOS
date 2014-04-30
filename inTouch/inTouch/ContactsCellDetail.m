@@ -46,19 +46,9 @@
 {
     UIImage *cellimage = nil;
     
-    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
-    
-    [storyQuery whereKey:@"Author" equalTo:user];
-    
-    NSArray *storyObjects = [storyQuery findObjects];
-    
-    if([storyObjects count] != 0){
-        
-        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
-        PFFile *profileImage = story[@"media"];
-        NSData *imageData = [profileImage getData];
-        cellimage = [UIImage imageWithData:imageData];
-    }
+    PFFile *profileImage = user[@"Photo"];
+    NSData *imageData = [profileImage getData];
+    cellimage = [UIImage imageWithData:imageData];
     
     return cellimage;
 }
