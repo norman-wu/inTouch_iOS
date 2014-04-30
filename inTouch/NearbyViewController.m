@@ -35,7 +35,7 @@
         
         self.PeopleNearby = [[NSArray alloc] init];
         self.myFriends = [[NSMutableArray alloc] init];
- 
+        
     }
     
     return self;
@@ -145,7 +145,7 @@
                       otherButtonTitles:nil] show];
     
     
-         return NO; // Interrupt login process
+    return NO; // Interrupt login process
 }
 
 
@@ -191,9 +191,7 @@
     
     if(indexPath.row < [self.PeopleNearby count]){
         PFObject *userPointer = [self.PeopleNearby objectAtIndex:indexPath.row];
-        PFUser *user = [PFQuery getUserObjectWithId:userPointer.objectId];
-        
-        [user refresh];
+        PFUser *user= [PFQuery getUserObjectWithId:userPointer.objectId];
         
         cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
         // check if someone is already user's friend
@@ -230,9 +228,6 @@
     
     //start positioning
     [self.locationManager startUpdatingLocation];
-    
-    
-    
 }
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
@@ -253,26 +248,14 @@
 //--------------------Backend Parse Functions------------------
 - (UIImage *)downloadImage: (PFUser *)user
 {
-    
     UIImage *cellimage = nil;
     
-    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
-    
-    [storyQuery whereKey:@"Author" equalTo:user];
-    
-    NSArray *storyObjects = [storyQuery findObjects];
-    
-    if([storyObjects count] != 0){
-        NSLog(@"%@", user.username);
-        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // get results
-        PFFile *profileImage = story[@"media"];
-        NSData *imageData = [profileImage getData];
-        cellimage = [UIImage imageWithData:imageData];
-    }
+    PFFile *profileImage = user[@"Photo"];
+    NSData *imageData = [profileImage getData];
+    cellimage = [UIImage imageWithData:imageData];
     
     return cellimage;
 }
-
 
 - (void) postLocation:(CLLocation *) currLocation
 {
@@ -324,7 +307,7 @@
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     NSLog(@"FACEBOOK LOGGED IN");
-    }
+}
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
@@ -334,11 +317,11 @@
     NSLog(@"----------------FACEBOOK---------------");
     NSLog(user.first_name);
     NSLog(@"----------------FACEBOOK---------------");
-   // self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
+    // self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
     // setting the profileID property of the FBProfilePictureView instance
     // causes the control to fetch and display the profile picture for the user
-   // self.profilePic.profileID = user.id;
-   // self.loggedInUser = user;
+    // self.profilePic.profileID = user.id;
+    // self.loggedInUser = user;
 }
 
 

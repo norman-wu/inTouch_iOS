@@ -72,23 +72,7 @@
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             // Create a PFObject around a PFFile and associate it with the current user
-            PFObject *userPhoto = [PFObject objectWithClassName:@"Story"];
-            [userPhoto setObject:imageFile forKey:@"media"];
-            
-            // Set the access control list to current user for security purposes
-            userPhoto.ACL = [PFACL ACLWithUser:user];
-            
-            [userPhoto setObject:user forKey:@"Author"];
-            
-            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    
-                }
-                else{
-                    // Log details of the failure
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
+            [user setObject:imageFile forKey:@"Photo"];
         }
         else{
             // Log details of the failure
@@ -96,6 +80,18 @@
         }
     }];
 }
+
+- (UIImage *)downloadImage: (PFUser *)user
+{
+    UIImage *cellimage = nil;
+    
+    PFFile *profileImage = user[@"Photo"];
+    NSData *imageData = [profileImage getData];
+    cellimage = [UIImage imageWithData:imageData];
+    
+    return cellimage;
+}
+
 
 -(BOOL)stringIsNilOrEmpty:(NSString*)aString
 {
@@ -114,29 +110,10 @@
     self.educationSet.placeholder = user[@"education"];
     
     // set up image
-    [self loadProfileImage];
+    self.profileImage.image = [self downloadImage:user];
     
     // set up uploadImage button
     [self setUpButton];
-}
-
-- (void)loadProfileImage
-{
-    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
-    
-    [storyQuery whereKey:@"Author" equalTo:[PFUser currentUser]];
-    
-    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error && [objects count] != 0) {
-            PFObject *story = [objects objectAtIndex:[objects count] - 1];           // Store results
-            PFFile *profileImage = story[@"media"];
-            NSData *imageData = [profileImage getData];
-            self.profileImage.image = [UIImage imageWithData:imageData];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }];
 }
 
 - (void)setUpButton

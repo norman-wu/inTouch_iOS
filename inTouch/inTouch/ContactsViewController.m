@@ -77,7 +77,7 @@
         PFUser *friend = [PFQuery getUserObjectWithId:friendPointer.objectId];
         
         cell.contactName.text = friend[@"username"];
-        cell.contactImage.image = [self downloadImage:friendPointer];
+        cell.contactImage.image = [self downloadImage:friend];
         
         
     } else{
@@ -117,19 +117,9 @@
 {
     UIImage *cellimage = nil;
     
-    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
-    
-    [storyQuery whereKey:@"Author" equalTo:user];
-    
-    NSArray *storyObjects = [storyQuery findObjects];
-    
-    if([storyObjects count] != 0){
-        
-        PFObject *story = [storyObjects objectAtIndex:[storyObjects count] - 1];           // Store results
-        PFFile *profileImage = story[@"media"];
-        NSData *imageData = [profileImage getData];
-        cellimage = [UIImage imageWithData:imageData];
-    }
+    PFFile *profileImage = user[@"Photo"];
+    NSData *imageData = [profileImage getData];
+    cellimage = [UIImage imageWithData:imageData];
     
     return cellimage;
 }

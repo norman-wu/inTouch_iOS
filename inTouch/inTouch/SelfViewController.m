@@ -26,6 +26,7 @@
     return self;
 }
 
+//--------------------Navigation and Sign In/Up------------------//
 - (void)setUpNavi
 {
     // set up title, left and right top buttons of the navigation
@@ -114,6 +115,7 @@
     }
 }
 
+//--------------------Backend Parse Functions------------------//
 
 - (void)retrieveProfileInfo
 {
@@ -126,28 +128,20 @@
     self.profileEmail.text = user.email;
     self.profileEducation.text = user[@"education"];
     
-    [self downloadProfileImage];
+    self.profileImage.image = [self downloadImage:user];
 }
 
-- (void)downloadProfileImage
+- (UIImage *)downloadImage: (PFUser *)user
 {
-    PFQuery *storyQuery = [PFQuery queryWithClassName:@"Story"];
+    UIImage *cellimage = nil;
     
-    [storyQuery whereKey:@"Author" equalTo:[PFUser currentUser]];
+    PFFile *profileImage = user[@"Photo"];
+    NSData *imageData = [profileImage getData];
+    cellimage = [UIImage imageWithData:imageData];
     
-    [storyQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error && [objects count] != 0) {
-            PFObject *story = [objects objectAtIndex:[objects count] - 1];           // Store results
-            PFFile *profileImage = story[@"media"];
-            NSData *imageData = [profileImage getData];
-            self.profileImage.image = [UIImage imageWithData:imageData];
-        }else if(error){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Retrieve failure" message:@"Unable to load or profile image does not exist" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
-    }];
-
+    return cellimage;
 }
+
 
 // if user logged in, dissmiss the login View
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
