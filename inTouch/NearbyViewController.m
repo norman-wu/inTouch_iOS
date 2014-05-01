@@ -260,6 +260,7 @@
     
     user[@"Location"] = currGeo;
     
+    [user save];
     [user refresh];
 }
 
