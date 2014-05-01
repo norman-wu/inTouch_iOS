@@ -113,22 +113,9 @@
     //self.profilePic.profileID = user.id;
     //self.loggedInUser = user;
     
-    
-    
-    
-    NSLog(user.first_name);
-    NSLog(user.last_name);
-    
-    NSLog([user objectForKey:@"email"]);
-    
-    //NSLog([user objectForKey:@"user_birthday"]);
-    
-    NSLog([user objectForKey:@"user_education_history"]);
-    
-     NSLog([user objectForKey:@"user_location"]);
-    
+
     NSString *fbuid = user.id;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?", fbuid]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", fbuid]];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
     
     
@@ -151,36 +138,85 @@
     PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
     
     // Save PFFile
-    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // Create a PFObject around a PFFile and associate it with the current user
-            PFObject *userPhoto = [PFObject objectWithClassName:@"Story"];
-            [userPhoto setObject:imageFile forKey:@"media"];
-            
-            // Set the access control list to current user for security purposes
-            userPhoto.ACL = [PFACL ACLWithUser:new_user];
-            
-            [userPhoto setObject:new_user forKey:@"Author"];
-            
-            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    
-                }
-                else{
-                    // Log details of the failure
-                    NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }
-            }];
-        }
-        else{
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        
+        
+        
+        // Save PFFile
+        [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                // Create a PFObject around a PFFile and associate it with the current user
+                [new_user setObject:imageFile forKey:@"Photo"];
+            }
+            else{
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
         flag++;
         
     }
 
+    
+    //------------------------
+    NSURL *urlToShare = [NSURL URLWithString:@"http://developers.facebook.com/ios"];
+    
+    // This code demonstrates 3 different ways of sharing using the Facebook SDK.
+    // The first method tries to share via the Facebook app. This allows sharing without
+    // the user having to authorize your app, and is available as long as the user has the
+    // correct Facebook app installed. This publish will result in a fast-app-switch to the
+    // Facebook app.
+    // The second method tries to share via Facebook's iOS6 integration, which also
+    // allows sharing without the user having to authorize your app, and is available as
+    // long as the user has linked their Facebook account with iOS6. This publish will
+    // result in a popup iOS6 dialog.
+    // The third method tries to share via a Graph API request. This does require the user
+    // to authorize your app. They must also grant your app publish permissions. This
+    // allows the app to publish without any user interaction.
+    
+    // If it is available, we will first try to post using the share dialog in the Facebook app
+    FBAppCall *appCall = [FBDialogs presentShareDialogWithLink:urlToShare
+                                                          name:@"inTouch"
+                                                       caption:nil
+                                                   description:@"I am using inTouch, please join and use it"
+                                                       picture:nil
+                                                   clientState:nil
+                                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
+                                                           if (error) {
+                                                               NSLog(@"Error: %@", error.description);
+                                                           } else {
+                                                               NSLog(@"Success!");
+                                                           }
+                                                       }];
+    
+    if (!appCall) {
+        // Next try to post using Facebook's iOS6 integration
+        BOOL displayedNativeDialog = [FBDialogs presentOSIntegratedShareDialogModallyFrom:self
+                                                                              initialText:nil
+                                                                                    image:nil
+                                                                                      url:urlToShare
+                                                                                  handler:nil];
+        
+        if (!displayedNativeDialog) {
+            // Lastly, fall back on a request for permissions and a direct post using the Graph API
+             performPublishAction:^{
+                NSString *message = [NSString stringWithFormat:@"Updating status for %@ at %@", user.first_name, [NSDate date]];
+                
+                FBRequestConnection *connection = [[FBRequestConnection alloc] init];
+                
+                connection.errorBehavior = FBRequestConnectionErrorBehaviorReconnectSession
+                | FBRequestConnectionErrorBehaviorAlertUser
+                | FBRequestConnectionErrorBehaviorRetry;
+                
+                [connection addRequest:[FBRequest requestForPostStatusUpdate:message]
+                     completionHandler:^(FBRequestConnection *innerConnection, id result, NSError *error) {
+                                              }];
+                [connection start];
+                
+            };
+        }
+    }
+
+    
     
     //[NearbyViewController.self dismissViewControllerAnimated:YES completion:nil];
     

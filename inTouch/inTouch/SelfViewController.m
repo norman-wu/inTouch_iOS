@@ -66,8 +66,6 @@
     [logInCtr setDelegate:self];
     [logInCtr setFacebookPermissions:[NSArray arrayWithObjects:@"friends_about_me", nil]];
     [logInCtr setFields: PFLogInFieldsDefault
-     | PFLogInFieldsTwitter
-     | PFLogInFieldsFacebook
      | PFLogInFieldsSignUpButton
      | PFLogInFieldsDismissButton];
     
