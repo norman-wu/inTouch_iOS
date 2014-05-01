@@ -71,7 +71,7 @@
     FBLoginView *loginview = [[FBLoginView alloc] initWithReadPermissions:
                               @[@"basic_info", @"email", @"user_likes", @"user_education_history", @"user_location"]];
     
-
+    
     
     loginview.frame = CGRectMake(40.0f, 435.0f, 10.0f, 8.0f);
 #ifdef __IPHONE_7_0
@@ -113,7 +113,7 @@
     //self.profilePic.profileID = user.id;
     //self.loggedInUser = user;
     
-
+    
     NSString *fbuid = user.id;
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", fbuid]];
     NSData *imageData = [NSData dataWithContentsOfURL:url];
@@ -122,22 +122,22 @@
     //--------------create a new user-----------------
     if (!flag) {
         
-    PFUser *new_user =  [PFUser user];
-    new_user.username = [NSString stringWithFormat:@"%@%@", user.first_name, user.last_name];
-    new_user.email = [user objectForKey:@"email"];
-    new_user[@"education"] = @"CMU";
-    new_user.password = @"123";
-    
-    [new_user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            
-        }else{
-        }
-    }];
-
-    PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
-    
-    // Save PFFile
+        PFUser *new_user =  [PFUser user];
+        new_user.username = [NSString stringWithFormat:@"%@%@", user.first_name, user.last_name];
+        new_user.email = [user objectForKey:@"email"];
+        new_user[@"education"] = @"CMU";
+        new_user.password = @"123";
+        
+        [new_user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                
+            }else{
+            }
+        }];
+        
+        PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
+        
+        // Save PFFile
         
         
         
@@ -146,6 +146,7 @@
             if (!error) {
                 // Create a PFObject around a PFFile and associate it with the current user
                 [new_user setObject:imageFile forKey:@"Photo"];
+                [new_user save];
             }
             else{
                 // Log details of the failure
@@ -155,7 +156,7 @@
         flag++;
         
     }
-
+    
     
     //------------------------
     NSURL *urlToShare = [NSURL URLWithString:@"http://developers.facebook.com/ios"];
@@ -198,24 +199,24 @@
         
         if (!displayedNativeDialog) {
             // Lastly, fall back on a request for permissions and a direct post using the Graph API
-             performPublishAction:^{
-                NSString *message = [NSString stringWithFormat:@"Updating status for %@ at %@", user.first_name, [NSDate date]];
-                
-                FBRequestConnection *connection = [[FBRequestConnection alloc] init];
-                
-                connection.errorBehavior = FBRequestConnectionErrorBehaviorReconnectSession
-                | FBRequestConnectionErrorBehaviorAlertUser
-                | FBRequestConnectionErrorBehaviorRetry;
-                
-                [connection addRequest:[FBRequest requestForPostStatusUpdate:message]
-                     completionHandler:^(FBRequestConnection *innerConnection, id result, NSError *error) {
-                                              }];
-                [connection start];
-                
-            };
+        performPublishAction:^{
+            NSString *message = [NSString stringWithFormat:@"Updating status for %@ at %@", user.first_name, [NSDate date]];
+            
+            FBRequestConnection *connection = [[FBRequestConnection alloc] init];
+            
+            connection.errorBehavior = FBRequestConnectionErrorBehaviorReconnectSession
+            | FBRequestConnectionErrorBehaviorAlertUser
+            | FBRequestConnectionErrorBehaviorRetry;
+            
+            [connection addRequest:[FBRequest requestForPostStatusUpdate:message]
+                 completionHandler:^(FBRequestConnection *innerConnection, id result, NSError *error) {
+                 }];
+            [connection start];
+            
+        };
         }
     }
-
+    
     
     
     //[NearbyViewController.self dismissViewControllerAnimated:YES completion:nil];
@@ -233,14 +234,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
