@@ -35,7 +35,6 @@
         
         self.PeopleNearby = [[NSArray alloc] init];
         self.myFriends = [[NSMutableArray alloc] init];
-        
     }
     
     return self;
@@ -75,7 +74,6 @@
     self.NearbyTableView.delegate = self;
     self.NearbyTableView.dataSource = self;
 }
-
 
 
 //--------------------Check Sign in------------------

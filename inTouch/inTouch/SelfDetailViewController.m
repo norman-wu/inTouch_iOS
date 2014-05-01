@@ -54,12 +54,12 @@
         user[@"education"] = self.educationSet.text;
     }
     
+    [user save];
+    
     if(!CGSizeEqualToSize(self.profileImage.image.size, CGSizeZero)){
         NSData *imageData = UIImageJPEGRepresentation(self.profileImage.image, 0.05f);
         [self uploadPhoto:imageData];
     }
-    
-    [user save];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -75,7 +75,6 @@
         if (!error) {
             // Create a PFObject around a PFFile and associate it with the current user
             [user setObject:imageFile forKey:@"Photo"];
-            user.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             [user save];
         }
         else{
