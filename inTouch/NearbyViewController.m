@@ -84,8 +84,6 @@
 // check if user has logged in
 - (void)viewDidAppear:(BOOL)animated
 {
-    
-    
     [super viewDidAppear:animated];
     
     if(![PFUser currentUser]){
@@ -114,8 +112,7 @@
      | PFLogInFieldsSignUpButton
      | PFLogInFieldsDismissButton];
     
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
-    
+    //NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
     return logInCtr;
 }
@@ -126,7 +123,7 @@
 {
     inTouchSignUpViewController *signUpCtr = [[inTouchSignUpViewController alloc] init];
     [signUpCtr setDelegate:self];
-    [signUpCtr setFields: PFSignUpFieldsDefault | PFSignUpFieldsAdditional];
+    [signUpCtr setFields: PFSignUpFieldsDefault];
     
     return signUpCtr;
 }
