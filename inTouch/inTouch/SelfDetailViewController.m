@@ -75,12 +75,16 @@
         if (!error) {
             // Create a PFObject around a PFFile and associate it with the current user
             [user setObject:imageFile forKey:@"Photo"];
+            user.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+            [user save];
         }
         else{
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    
+    
 }
 
 - (UIImage *)downloadImage: (PFUser *)user
