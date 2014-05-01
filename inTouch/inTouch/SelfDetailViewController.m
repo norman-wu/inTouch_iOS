@@ -59,6 +59,8 @@
         [self uploadPhoto:imageData];
     }
     
+    [user save];
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

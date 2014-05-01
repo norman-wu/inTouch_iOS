@@ -65,8 +65,6 @@
         
         [self findMyFriends];
         [self.NearbyTableView reloadData];
-        
-        
     }
 }
 
