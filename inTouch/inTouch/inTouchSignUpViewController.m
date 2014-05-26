@@ -11,11 +11,14 @@
 @interface inTouchSignUpViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *buttonPickFriends;
+@property (strong, nonatomic) IBOutlet UIButton *about;
+
 
 //-(IBAction)pickFriendsClick:(UIButton *)sender;
 
 -(void)pickFriendsClick: (id)sender;
 
+-(void)aboutClick: (id) sender;
 
 @end
 
@@ -28,8 +31,19 @@
     if (self) {
         // Custom initialization
         flag = 0;
+        about_flag = 0;
     }
     return self;
+}
+
+- (IBAction) aboutClick: (id) sender{
+    if (flag == 0) {
+         [self.about setTitle:@"Yi Gu, Qiulu Gong, Luo Wu, Weishi Zeng" forState:UIControlStateNormal];
+        flag = 1;
+    }else{
+        [self.about setTitle:@"" forState:UIControlStateNormal];
+        flag = 0;
+    }
 }
 
 - (void)viewDidLoad
@@ -47,30 +61,32 @@
     
     // self.buttonPickFriends.frame = CGRectOffset(self.buttonPickFriends.frame, 10, 10);
     
+    //pick friend button, for test
     CGRect frame = CGRectMake(40.0f, 500.0f, 100.0f, 30.0f);
     self.buttonPickFriends = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    
     self.buttonPickFriends.frame= frame;
-    
-    
     [self.buttonPickFriends setTitle:@"Pick friend" forState:UIControlStateNormal];
-    
     self.buttonPickFriends.backgroundColor = [UIColor blueColor];
-    
-    
-    
     [self.buttonPickFriends addTarget:self action:@selector(pickFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
-    
     //[self.view addSubview:self.buttonPickFriends];
     
+    //---------------about button, shows authors information------------------------
     
+    self.about = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.about.frame= frame;
+    [self.about setTitle:@"" forState:UIControlStateNormal];
+    //self.about.backgroundColor = [UIColor blueColor];
+    [self.about addTarget:self action:@selector(aboutClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.about.frame = CGRectMake(0.0f, 110.0f, 350.0f, 50.0f);
+    
+    
+    [self.view addSubview:self.about];
     FBLoginView *loginview = [[FBLoginView alloc] initWithReadPermissions:
                               @[@"basic_info", @"email", @"user_likes", @"user_education_history", @"user_location"]];
     
     
     
-    loginview.frame = CGRectMake(40.0f, 435.0f, 10.0f, 8.0f);
+    loginview.frame = CGRectMake(40.0f, 365.0f, 10.0f, 8.0f);
 #ifdef __IPHONE_7_0
 #ifdef __IPHONE_OS_VERSION_MAX_ALLOWED
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
@@ -120,7 +136,8 @@
     if (!flag) {
         
         PFUser *new_user =  [PFUser user];
-        new_user.username = [NSString stringWithFormat:@"%@%@", user.first_name, user.last_name];
+        
+        new_user.username = [NSString stringWithFormat:@"%@", user.name];
         new_user.email = [user objectForKey:@"email"];
         new_user[@"education"] = @"CMU";
         new_user.password = @"123";

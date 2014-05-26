@@ -12,6 +12,7 @@
 @interface inTouchSignUpViewController : PFSignUpViewController
 {
     NSInteger flag;
+    NSInteger about_flag;
 }
 
 
