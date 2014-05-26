@@ -7,7 +7,7 @@
 //
 
 #import "NearbyCellView.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation NearbyCellView
 
@@ -17,8 +17,6 @@
     if (self) {
         // Initialization code
         self.addButton = [[UIButton alloc] init];
-        
-        
     }
     return self;
 }
@@ -28,12 +26,16 @@
     UIImage* button_img = [UIImage imageNamed:@"add.png"];
     
     [self.addButton setBackgroundImage:button_img forState:UIControlStateNormal];
+    
+    // set the image to round
+    self.cellImage.layer.cornerRadius = 22.5;
+    self.cellImage.clipsToBounds = YES;
 }
 
 - (void)awakeFromNib
 {
     // Initialization code
-    //[self setUpViewComponents];
+    [self setUpViewComponents];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -12,7 +12,9 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    // set the image to round
+    self.contactImage.layer.cornerRadius = 22.5;
+    self.contactImage.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

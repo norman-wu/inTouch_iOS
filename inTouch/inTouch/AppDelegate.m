@@ -38,7 +38,7 @@
     PFACL *defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-
+    
     return YES;
 }
 
@@ -74,7 +74,7 @@
 {
    
     // initialize nearby view
-    self.nearByController = [[NearbyViewController alloc] init];
+    self.nearByController = [[NearByTableView alloc] init];
     UINavigationController *nearByNav = [[UINavigationController alloc] initWithRootViewController:self.nearByController];
     
     // initialize contacts view
@@ -107,7 +107,7 @@
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     //stop positioning
-    [self.nearByController.locationManager pausesLocationUpdatesAutomatically];
+    //[self.nearByController.locationManager pausesLocationUpdatesAutomatically];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -10,9 +10,6 @@
 
 @interface inTouchSignUpViewController ()
 
-
-
-
 @property (strong, nonatomic) IBOutlet UIButton *buttonPickFriends;
 
 //-(IBAction)pickFriendsClick:(UIButton *)sender;

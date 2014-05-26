@@ -17,8 +17,8 @@
 @property (strong, nonatomic) PFUser *friend;
 
 @property (strong, nonatomic) IBOutlet UIButton *addButton;
-@property (strong, nonatomic) IBOutlet UILabel *CellName;
-@property (strong, nonatomic) IBOutlet UIImageView *CellImage;
+@property (strong, nonatomic) IBOutlet UILabel *cellName;
+@property (strong, nonatomic) IBOutlet UIImageView *cellImage;
 @property (strong, nonatomic) IBOutlet UILabel *cellEducation;
 
 - (IBAction)addToContacts:(UIButton *)sender;

@@ -22,6 +22,7 @@
         // Custom initialization
         self.title = @"Me";
         [self.tabBarItem setImage:[UIImage imageNamed:@"meTab.png"]];
+        
     }
     return self;
 }
@@ -104,6 +105,10 @@
     [super viewDidLoad];
     
     [self setUpNavi];
+    
+    self.profileImage.layer.cornerRadius = 90;
+    self.profileImage.clipsToBounds = YES;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

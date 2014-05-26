@@ -30,8 +30,6 @@
 		0BAAB14418ECFD4D00372769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAAB12C18ECFD4D00372769 /* UIKit.framework */; };
 		0BAAB14C18ECFD4D00372769 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB14A18ECFD4D00372769 /* InfoPlist.strings */; };
 		0BAAB14E18ECFD4D00372769 /* inTouchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB14D18ECFD4D00372769 /* inTouchTests.m */; };
-		0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB15E18ECFE8500372769 /* NearbyViewController.m */; };
-		0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */; };
 		0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB16418ECFEC400372769 /* ContactsViewController.m */; };
 		0BAAB16718ECFEC400372769 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAAB16518ECFEC400372769 /* ContactsViewController.xib */; };
 		0BAAB16D18ECFF0900372769 /* SelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAAB16B18ECFF0900372769 /* SelfViewController.m */; };
@@ -53,6 +51,7 @@
 		0BB17BF9190B9C290068B305 /* addbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB17BF8190B9C290068B305 /* addbutton.png */; };
 		0BB5B6CF190317C200E0D15B /* SelfDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */; };
 		0BB5B6D0190317C200E0D15B /* SelfDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */; };
+		0BB977E01932F60100AF1BD6 /* NearByTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB977DF1932F60100AF1BD6 /* NearByTableView.m */; };
 		0C0FAC83190772B400BA0D07 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */; };
 		0C5DA3E9190368B00015D423 /* NearbyCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5DA3E8190368B00015D423 /* NearbyCellView.xib */; };
 		0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5DA3ED19036DB80015D423 /* NearbyCellView.m */; };
@@ -100,9 +99,6 @@
 		0BAAB14918ECFD4D00372769 /* inTouchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "inTouchTests-Info.plist"; sourceTree = "<group>"; };
 		0BAAB14B18ECFD4D00372769 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0BAAB14D18ECFD4D00372769 /* inTouchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inTouchTests.m; sourceTree = "<group>"; };
-		0BAAB15D18ECFE8500372769 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NearbyViewController.h; path = ../NearbyViewController.h; sourceTree = "<group>"; };
-		0BAAB15E18ECFE8500372769 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NearbyViewController.m; path = ../NearbyViewController.m; sourceTree = "<group>"; };
-		0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NearbyViewController.xib; path = ../NearbyViewController.xib; sourceTree = "<group>"; };
 		0BAAB16318ECFEC400372769 /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
 		0BAAB16418ECFEC400372769 /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		0BAAB16518ECFEC400372769 /* ContactsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
@@ -127,6 +123,8 @@
 		0BB5B6CC190317C200E0D15B /* SelfDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfDetailViewController.h; sourceTree = "<group>"; };
 		0BB5B6CD190317C200E0D15B /* SelfDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfDetailViewController.m; sourceTree = "<group>"; };
 		0BB5B6CE190317C200E0D15B /* SelfDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelfDetailViewController.xib; sourceTree = "<group>"; };
+		0BB977DE1932F60100AF1BD6 /* NearByTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearByTableView.h; sourceTree = "<group>"; };
+		0BB977DF1932F60100AF1BD6 /* NearByTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearByTableView.m; sourceTree = "<group>"; };
 		0C0FAC82190772B400BA0D07 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		0C5DA3E8190368B00015D423 /* NearbyCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NearbyCellView.xib; sourceTree = "<group>"; };
 		0C5DA3EC19036DB80015D423 /* NearbyCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyCellView.h; sourceTree = "<group>"; };
@@ -294,12 +292,11 @@
 		0BAAB16218ECFE9100372769 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				0BAAB15D18ECFE8500372769 /* NearbyViewController.h */,
-				0BAAB15E18ECFE8500372769 /* NearbyViewController.m */,
-				0BAAB15F18ECFE8500372769 /* NearbyViewController.xib */,
 				0C5DA3EC19036DB80015D423 /* NearbyCellView.h */,
 				0C5DA3ED19036DB80015D423 /* NearbyCellView.m */,
 				0C5DA3E8190368B00015D423 /* NearbyCellView.xib */,
+				0BB977DE1932F60100AF1BD6 /* NearByTableView.h */,
+				0BB977DF1932F60100AF1BD6 /* NearByTableView.m */,
 			);
 			name = Nearby;
 			sourceTree = "<group>";
@@ -419,7 +416,6 @@
 				0B3AA6D3190B25FE006996F1 /* nearBy.png in Resources */,
 				0BAAB13318ECFD4D00372769 /* InfoPlist.strings in Resources */,
 				0BAD268418EE41C500E1610C /* SignInUp2.JPG in Resources */,
-				0BAAB16118ECFE8500372769 /* NearbyViewController.xib in Resources */,
 				0BAAB13B18ECFD4D00372769 /* Images.xcassets in Resources */,
 				0B3AA6D1190B235A006996F1 /* me.png in Resources */,
 				0B35D446190A008100BEAF8A /* ContactsCellDetail.xib in Resources */,
@@ -445,12 +441,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB977E01932F60100AF1BD6 /* NearByTableView.m in Sources */,
 				0B240B3C18EDC0FB0083D5E2 /* inTouchSignUpViewController.m in Sources */,
 				0B35D445190A008100BEAF8A /* ContactsCellDetail.m in Sources */,
 				0C5DA3EE19036DB80015D423 /* NearbyCellView.m in Sources */,
 				0BB5B6CF190317C200E0D15B /* SelfDetailViewController.m in Sources */,
 				0BAAB13918ECFD4D00372769 /* AppDelegate.m in Sources */,
-				0BAAB16018ECFE8500372769 /* NearbyViewController.m in Sources */,
 				0BAAB16D18ECFF0900372769 /* SelfViewController.m in Sources */,
 				0B240B3918EDC0B10083D5E2 /* inTouchLogInViewController.m in Sources */,
 				0BAAB16618ECFEC400372769 /* ContactsViewController.m in Sources */,

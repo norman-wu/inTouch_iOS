@@ -14,7 +14,7 @@
 //For GPS
 #import <CoreLocation/CoreLocation.h>
 #import <CoreLocation/CLLocationManagerDelegate.h>
-#import "NearbyViewController.h"
+#import "NearByTableView.h"
 #import "ContactsViewController.h"
 #import "SelfViewController.h"
 
@@ -25,7 +25,7 @@
 
 //GPS location manager
 
-@property (strong, nonatomic) NearbyViewController *nearByController;
+@property (strong, nonatomic) NearByTableView *nearByController;
 @property (strong, nonatomic) ContactsViewController *contactsController;
 @property (strong, nonatomic) SelfViewController *selfController;
 

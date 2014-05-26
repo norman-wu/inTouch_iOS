@@ -34,6 +34,12 @@
 {
     self.title = @"Detail";
     
+    
+    // set up the image to round
+    self.contactImage.layer.cornerRadius = 100;
+    self.contactImage.clipsToBounds = YES;
+
+    
     PFUser *user = [PFQuery getUserObjectWithId:self.contactId];
     
     self.contactImage.image = [self downloadImage:user];

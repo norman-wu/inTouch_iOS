@@ -87,14 +87,6 @@
     
     FBLoginView *loginview = [[FBLoginView alloc] init];
     
-    
-    
-    
- //   [self.buttonPickFriends = [UIButton alloc] init];
-    
-    
-   // self.buttonPickFriends.frame = CGRectOffset(self.buttonPickFriends.frame, 10, 10);
-    
     CGRect frame = CGRectMake(100.0f, 100.0f, 100.0f, 30.0f);
     self.buttonPickFriends = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
@@ -160,9 +152,6 @@
    
      
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

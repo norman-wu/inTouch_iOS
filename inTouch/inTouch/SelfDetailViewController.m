@@ -142,6 +142,9 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    
+    self.profileImage.layer.cornerRadius = 75;
+    self.profileImage.clipsToBounds = YES;
 }
 
 -(void)dismissKeyboard {

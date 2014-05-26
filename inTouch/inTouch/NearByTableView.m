@@ -1,43 +1,61 @@
 //
-//  NearbyViewController.m
+//  NearByTableView.m
 //  inTouch
 //
-//  Created by yigu on 4/2/14.
+//  Created by yigu on 5/25/14.
 //  Copyright (c) 2014 yigu. All rights reserved.
 //
 
-
-#import "AppDelegate.h"
-#import "NearbyViewController.h"
+#import "NearByTableView.h"
 #import "inTouchLogInViewController.h"
 #import "inTouchSignUpViewController.h"
 #import "NearbyCellView.h"
 
-#import <Parse/Parse.h>
+@interface NearByTableView ()
 
-@interface NearbyViewController ()
-
-@property (weak, nonatomic) IBOutlet UITableView *NearbyTableView;
 @property (strong, nonatomic) NSArray *PeopleNearby;
 @property (strong, nonatomic) NSMutableArray *myFriends;
 
 @end
 
-@implementation NearbyViewController
+@implementation NearByTableView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        // The title for this table in the Navigation Controller.
         self.title = @"NearBy";
+        
+        // The className to query on
+        self.parseClassName = @"_User";
+        
+        // Whether the built-in pull-to-refresh is enabled
+        self.pullToRefreshEnabled = YES;
+        
+        // Whether the built-in pagination is enabled
+        self.paginationEnabled = YES;
+        
+        // The number of objects to show per page
+        self.objectsPerPage = 10;
+        
         [self.tabBarItem setImage:[UIImage imageNamed:@"nearBy.png"]];
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"NearbyCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"NearbyCellView"];
+
         
         self.PeopleNearby = [[NSArray alloc] init];
         self.myFriends = [[NSMutableArray alloc] init];
+
     }
-    
     return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)setUpGPS
@@ -48,13 +66,6 @@
     self.locationManager.distanceFilter = 10.0f;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self loadTableView];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     if([PFUser currentUser]){
@@ -63,18 +74,8 @@
         [self.locationManager startUpdatingLocation];
         
         [self findMyFriends];
-        [self.NearbyTableView reloadData];
     }
 }
-
-- (void)loadTableView
-{
-    [self.NearbyTableView registerNib:[UINib nibWithNibName:@"NearbyCellView" bundle:nil] forCellReuseIdentifier:@"NearbyCellView"];
-    
-    self.NearbyTableView.delegate = self;
-    self.NearbyTableView.dataSource = self;
-}
-
 
 //--------------------Check Sign in------------------
 // check if user has logged in
@@ -112,8 +113,6 @@
     
     return logInCtr;
 }
-
-
 
 - (inTouchSignUpViewController *) setUpSignUp
 {
@@ -167,55 +166,6 @@
     return informationComplete;
 }
 
-//--------------table view-------------------
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.PeopleNearby count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 65;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFUser *)object
-{
-    static NSString *CellIdentifier = @"NearbyCellView";
-    
-    NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        cell = [[NearbyCellView alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
-    
-    // check if someone is already user's friend
-    for(int i = 0; i < [self.myFriends count]; i++){
-        PFObject *friendPointer = [self.myFriends objectAtIndex:i];
-        if([[object objectId] isEqual:friendPointer.objectId]){
-            cell.buttonImage = [UIImage imageNamed:@"friend.png"];
-        }
-    }
-    
-    if([[object objectId] isEqual:[PFUser currentUser].objectId]){
-        cell.buttonImage = [UIImage imageNamed:@"me.png"];
-    }
-    
-    // pass the value to cell
-    cell.me = [PFUser currentUser];
-    cell.friend = object;
-    
-    [cell.addButton setBackgroundImage:cell.buttonImage forState:UIControlStateNormal];
-    cell.CellName.text = object[@"username"];
-    cell.cellEducation.text = object[@"education"];
-    
-    cell.CellImage.image = [self downloadImage:object];
-    
-    
-    return cell;
-}
-
 // if user logged in, dissmiss the login View and start the gps
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
@@ -231,7 +181,6 @@
     [self.locationManager startUpdatingLocation];
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation * currLocation = [locations lastObject];
@@ -240,7 +189,71 @@
     [self findNearByPeople];
 }
 
+
+//--------------table view-------------------
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 65;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NearbyCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"NearbyCellView"];
+    
+    if(indexPath.row < [self.PeopleNearby count]){
+        PFObject *userPointer = [self.PeopleNearby objectAtIndex:indexPath.row];
+        PFUser *user= [PFQuery getUserObjectWithId:userPointer.objectId];
+        
+        cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
+        // check if someone is already user's friend
+        for(int i = 0; i < [self.myFriends count]; i++){
+            PFObject *friendPointer = [self.myFriends objectAtIndex:i];
+            if([[user objectId] isEqual:friendPointer.objectId]){
+                cell.buttonImage = [UIImage imageNamed:@"friend.png"];
+            }
+        }
+        
+        if([user.objectId isEqual:[PFUser currentUser].objectId]){
+            cell.buttonImage = [UIImage imageNamed:@"me.png"];
+        }
+        
+        // pass the value to cell
+        cell.me = [PFUser currentUser];
+        cell.friend = user;
+        
+        [cell.addButton setBackgroundImage:cell.buttonImage forState:UIControlStateNormal];
+        cell.cellName.text = user[@"username"];
+        cell.cellEducation.text = user[@"education"];
+        
+        cell.cellImage.image = [self downloadImage:user];
+        
+    }
+    
+    return cell;
+}
+
+
 //--------------------Backend Parse Functions------------------
+#pragma mark - Parse
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+}
+
+- (void)objectsWillLoad {
+    [super objectsWillLoad];
+    
+    // This method is called before a PFQuery is fired to get more objects
+}
+
+
 - (UIImage *)downloadImage: (PFUser *)user
 {
     UIImage *cellimage = nil;
@@ -250,18 +263,6 @@
     cellimage = [UIImage imageWithData:imageData];
     
     return cellimage;
-}
-
-- (void) postLocation:(CLLocation *) currLocation
-{
-    PFUser *user = [PFUser currentUser];
-    
-    PFGeoPoint *currGeo = [PFGeoPoint geoPointWithLatitude:currLocation.coordinate.latitude longitude:currLocation.coordinate.longitude];
-    
-    user[@"Location"] = currGeo;
-    
-    [user save];
-    [user refresh];
 }
 
 - (void)findNearByPeople
@@ -282,8 +283,19 @@
     
     // Final list of objects
     self.PeopleNearby = [query findObjects];
+}
+
+
+- (void) postLocation:(CLLocation *) currLocation
+{
+    PFUser *user = [PFUser currentUser];
     
-    [self.NearbyTableView reloadData];
+    PFGeoPoint *currGeo = [PFGeoPoint geoPointWithLatitude:currLocation.coordinate.latitude longitude:currLocation.coordinate.longitude];
+    
+    user[@"Location"] = currGeo;
+    
+    [user saveInBackground];
+    [user refresh];
 }
 
 - (void)findMyFriends
@@ -298,9 +310,6 @@
     }
 }
 
-// Override to customize what kind of query to perform on the class. The default is to query for
-// all objects ordered by createdAt descending.
-
 //-------------------------Facebook-----------------------
 #pragma mark - FBLoginViewDelegate
 
@@ -314,7 +323,6 @@
     // id properties of the json response from the server; alternatively we could use
     // NSDictionary methods such as objectForKey to get values from the my json object
     NSLog(@"----------------FACEBOOK---------------");
-    NSLog(user.first_name);
     NSLog(@"----------------FACEBOOK---------------");
     // self.labelFirstName.text = [NSString stringWithFormat:@"Hello %@!", user.first_name];
     // setting the profileID property of the FBProfilePictureView instance
