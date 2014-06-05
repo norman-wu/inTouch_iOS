@@ -39,7 +39,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.myFriends = [[NSMutableArray alloc] init];
-    [self findMyFriends];
+    
+    // download friends from cloud
+    [PFCloud callFunctionInBackground:@"findFriends"
+                       withParameters:@{}
+                                block:^(NSArray *results, NSError *error) {
+                                    if (!error) {
+                                        // results are array of jsons
+                                        [self.myFriends addObjectsFromArray:results];
+                                    }
+                                }];
+    NSLog(@"MyFriends%d", [self.myFriends count]);
+    
+
     
     [self.ContractsTableView reloadData];
 }
@@ -55,7 +67,8 @@
 //--------------------table view------------------
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.myFriends count];
+    
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,12 +78,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"MyFriends%d", [self.myFriends count]);
     //get the cell from the nib
     ContactsViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ContactsViewCell"];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     //show friends if any
+    
     if ([self.myFriends count] != 0) {
         PFObject *friendPointer = [self.myFriends objectAtIndex:indexPath.row];
         
@@ -101,18 +116,6 @@
 }
 
 //--------------------Backend Parse Functions------------------
-- (void)findMyFriends
-{
-    PFUser *user = [PFUser currentUser];
-    
-    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
-    [friendQuery whereKey:@"User_id" equalTo:user];
-    
-    for(int i = 0; i < [[friendQuery findObjects] count]; i++){
-        [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
-    }
-}
-
 - (UIImage *)downloadImage: (PFUser *)user
 {
     UIImage *cellimage = nil;

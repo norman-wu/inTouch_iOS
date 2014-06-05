@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "inTouch"
+        }, 
+        "inTouch": {
+            "applicationId": "gdx6O89iizP2Jg0ibFBfW9Df27o4lA9WCXuQDf2c", 
+            "masterKey": "qeqgZq1s0xvRk3m9IxGr85M2UultaXD5bGAiegWN"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

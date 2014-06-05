@@ -12,5 +12,7 @@
 
 @property(nonatomic, strong) CLLocationManager *locationManager;
 
+@property (strong, nonatomic) NSArray *PeopleNearby;
+@property (strong, nonatomic) NSMutableArray *myFriends;
 
 @end

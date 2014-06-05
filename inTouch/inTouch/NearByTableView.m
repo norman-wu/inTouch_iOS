@@ -13,12 +13,11 @@
 
 @interface NearByTableView ()
 
-@property (strong, nonatomic) NSArray *PeopleNearby;
-@property (strong, nonatomic) NSMutableArray *myFriends;
-
 @end
 
 @implementation NearByTableView
+
+@synthesize PeopleNearby, myFriends;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,11 +42,12 @@
         [self.tabBarItem setImage:[UIImage imageNamed:@"nearBy.png"]];
         
         [self.tableView registerNib:[UINib nibWithNibName:@"NearbyCellView" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"NearbyCellView"];
-
+        
         
         self.PeopleNearby = [[NSArray alloc] init];
-        self.myFriends = [[NSMutableArray alloc] init];
-
+        myFriends = [[NSMutableArray alloc] init];
+        
+        
     }
     return self;
 }
@@ -69,11 +69,27 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if([PFUser currentUser]){
-        //start positioning
+        // start positioning
         [self setUpGPS];
         [self.locationManager startUpdatingLocation];
         
-        [self findMyFriends];
+        myFriends = [[NSMutableArray alloc] init];
+        
+        __block NSDictionary *friend;
+        // download friends from cloud
+        [PFCloud callFunctionInBackground:@"findFriends"
+                           withParameters:@{}
+                                    block:^(NSArray *results, NSError *error) {
+                                         // results are array of jsons
+                                        if (!error) {
+                                            for(int i = 0; i < [results count]; i++){
+                                                friend = [results objectAtIndex:i];
+                                                [myFriends addObject:friend];
+                                            }
+                                        }
+                                    }];
+        
+        NSLog(@"Hello %d", [myFriends count]);
     }
 }
 
@@ -211,8 +227,8 @@
         
         cell.buttonImage = [UIImage imageNamed:@"addbutton.png"];
         // check if someone is already user's friend
-        for(int i = 0; i < [self.myFriends count]; i++){
-            PFObject *friendPointer = [self.myFriends objectAtIndex:i];
+        for(int i = 0; i < [myFriends count]; i++){
+            PFObject *friendPointer = [myFriends objectAtIndex:i];
             if([[user objectId] isEqual:friendPointer.objectId]){
                 cell.buttonImage = [UIImage imageNamed:@"friend.png"];
             }
@@ -279,7 +295,7 @@
     [query whereKey:@"Location" nearGeoPoint:userGeoPoint];
     
     // Limit what could be a lot of points.
-    query.limit = 10;
+    query.limit = 8;
     
     // Final list of objects
     self.PeopleNearby = [query findObjects];
@@ -296,18 +312,6 @@
     
     [user saveInBackground];
     [user refresh];
-}
-
-- (void)findMyFriends
-{
-    PFUser *user = [PFUser currentUser];
-    
-    PFQuery *friendQuery = [PFQuery queryWithClassName:@"Friend"];
-    [friendQuery whereKey:@"User_id" equalTo:user];
-    
-    for(int i = 0; i < [[friendQuery findObjects] count]; i++){
-        [self.myFriends addObject:[[friendQuery findObjects] objectAtIndex:i][@"Friend_id"]];
-    }
 }
 
 //-------------------------Facebook-----------------------
